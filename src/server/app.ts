@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import handleHealthStatus from "./middlewares/handleHealthStatus/handleHealthStatus.js";
+import handleHealthCheck from "./middlewares/handleHealthCheck/handleHealthCheck.js";
 
 const app = express();
 
@@ -8,6 +8,6 @@ app.disable("x-powered-by");
 
 app.use(morgan("dev"));
 
-app.get("/", handleHealthStatus);
+app.get("/", handleHealthCheck);
 
 export default app;
