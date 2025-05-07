@@ -65,12 +65,11 @@ The backend server runs on [http://localhost:4000](http://localhost:4000) by def
 
 ## 📦 API Endpoints
 
-The backend exposes the following RESTful endpoints:
+The Express backend exposes endpoints such as:
 
-- `GET /books` – Retrieve all books
-- `POST /books` – Create a new book
-- `PUT /books/:id` – Update a book by ID
-- `DELETE /books/:id` – Delete a book by ID
+- In progress... ⚒️
+
+Data is stored in a MongoDB database.
 
 ### Database
 
