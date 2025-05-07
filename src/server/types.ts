@@ -1,7 +1,7 @@
-export interface responseBodyError {
+export interface ResponseBodyError {
   error: string;
 }
 
-export interface responseBodyMessage {
+export interface ResponseBodyMessage {
   message: string;
 }

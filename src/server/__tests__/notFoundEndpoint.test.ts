@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../app.js";
-import { responseBodyError } from "../types.js";
+import { ResponseBodyError } from "../types.js";
 import statusCodes from "../../globals/statusCodes.js";
 
 describe("Given a GET /Manga non existent endpoint", () => {
@@ -11,7 +11,7 @@ describe("Given a GET /Manga non existent endpoint", () => {
 
       const response = await request(app).get("/Manga");
 
-      const body = response.body as responseBodyError;
+      const body = response.body as ResponseBodyError;
 
       expect(response.status).toBe(expectedStatus);
       expect(body.error).toBe(expectedErrorMessage);
