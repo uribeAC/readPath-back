@@ -4,10 +4,10 @@ import handleHealthCheck from "./handleHealthCheck.js";
 describe("Chiven the handleHealthCheck middleware", () => {
   describe("When it receives a response", () => {
     const req = {} as Request;
-    const res = {
+    const res: Pick<Response, "status" | "json"> = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
-    } as Pick<Response, "status" | "json">;
+    };
 
     beforeEach(() => {
       jest.clearAllMocks();
