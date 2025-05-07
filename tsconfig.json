@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "ESNext" /* Specify what module code is generated. */,
-    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "module": "NodeNext" /* Specify what module code is generated. */,
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "outDir": "./dist/" /* Specify an output folder for all emitted files. */,
     "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */,
@@ -10,5 +9,6 @@
     "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied `any` type.. */,
     "strictNullChecks": true /* When type checking, take into account 'null' and 'undefined'. */,
     "sourceMap": true
-  }
+  },
+  "include": ["src/**/*.ts"]
 }
