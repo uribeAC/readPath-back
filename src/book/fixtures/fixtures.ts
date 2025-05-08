@@ -1,6 +1,6 @@
-import { BookStructure } from "../types.js";
+import { BookData, BookStructure } from "../types.js";
 
-const narutoVol1: BookStructure = {
+export const narutoVol1: BookStructure = {
   _id: "1",
   title: "Naruto Vol. 1",
   author: "Masashi Kishimoto",
@@ -248,3 +248,56 @@ export const mangaFixtures: BookStructure[] = [
   vinlandSagaVol1,
   demonSlayerVol1,
 ];
+
+export const narutoFinalVolume: BookData = {
+  title: "Naruto, Vol. 72",
+  author: "Masashi Kishimoto",
+  saga: {
+    name: "Naruto",
+    bookNumber: 72,
+  },
+  description:
+    "Naruto and Sasuke face off in their final battle. As the fate of the ninja world hangs in the balance, friendships and ideals are put to the ultimate test in the epic conclusion of the Naruto saga.",
+  genres: ["Manga", "Action", "Adventure", "Fantasy"],
+  pages: 208,
+  firstPublished: "2015-10-06",
+  state: "read",
+  yourRating: 5,
+  readDates: {
+    dateStarted: "2015-10-10",
+    dateFinished: "2015-10-12",
+    readYear: 2015,
+  },
+  coverImageUrlSmall:
+    "https://images-na.ssl-images-amazon.com/images/I/51TzbpxqQBL._SX331_BO1,204,203,200_.jpg",
+  coverImageUrlBig:
+    "https://images-na.ssl-images-amazon.com/images/I/51TzbpxqQBL.jpg",
+  imageAlt: "Naruto Volume 72 cover featuring Naruto and Sasuke",
+};
+
+export const attackOnTitanFinalVolume: BookData = {
+  title: "Attack on Titan, Vol. 34",
+  author: "Hajime Isayama",
+  saga: {
+    name: "Attack on Titan",
+    bookNumber: 34,
+  },
+  description:
+    "Eren's grand plan reaches its endgame as the fate of humanity lies in the hands of those who dare to stop him. The dramatic conclusion of one of the most impactful manga series in recent years.",
+  genres: ["Manga", "Action", "Drama", "Post-Apocalyptic", "Fantasy"],
+  pages: 256,
+  firstPublished: "2021-10-19",
+  state: "read",
+  yourRating: 4,
+  readDates: {
+    dateStarted: "2021-10-20",
+    dateFinished: "2021-10-21",
+    readYear: 2021,
+  },
+  coverImageUrlSmall:
+    "https://images-na.ssl-images-amazon.com/images/I/81FqKkgV8qL._SY342_.jpg",
+  coverImageUrlBig:
+    "https://images-na.ssl-images-amazon.com/images/I/81FqKkgV8qL.jpg",
+  imageAlt:
+    "Attack on Titan Volume 34 cover with main characters in final battle",
+};
