@@ -11,13 +11,13 @@ export interface BookStructure {
   pages: number;
   firstPublished: Date;
   state: "read" | "to read";
-  yourRating: Rating;
+  yourRating?: Rating;
   readDates?: {
     dateStarted?: Date;
     dateFinished?: Date;
     readYear?: number;
   };
-  coverImageUrlSmall?: string;
+  coverImageUrlSmall: string;
   coverImageUrlBig: string;
   imageAlt: string;
 }
