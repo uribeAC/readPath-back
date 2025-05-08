@@ -1,6 +1,6 @@
 import { BookStructure } from "../types.js";
 
-export const narutoVol1: BookStructure = {
+const narutoVol1: BookStructure = {
   _id: "1",
   title: "Naruto Vol. 1",
   author: "Masashi Kishimoto",
@@ -22,7 +22,7 @@ export const narutoVol1: BookStructure = {
   imageAlt: "Naruto Volume 1 Cover",
 };
 
-export const onePieceVol1: BookStructure = {
+const onePieceVol1: BookStructure = {
   _id: "2",
   title: "One Piece Vol. 1",
   author: "Eiichiro Oda",
@@ -44,7 +44,7 @@ export const onePieceVol1: BookStructure = {
   imageAlt: "One Piece Volume 1 Cover",
 };
 
-export const attackOnTitanVol1: BookStructure = {
+const attackOnTitanVol1: BookStructure = {
   _id: "3",
   title: "Attack on Titan Vol. 1",
   author: "Hajime Isayama",
@@ -66,7 +66,7 @@ export const attackOnTitanVol1: BookStructure = {
   imageAlt: "Attack on Titan Volume 1 Cover",
 };
 
-export const deathNoteVol1: BookStructure = {
+const deathNoteVol1: BookStructure = {
   _id: "4",
   title: "Death Note Vol. 1",
   author: "Tsugumi Ohba",
@@ -88,7 +88,7 @@ export const deathNoteVol1: BookStructure = {
   imageAlt: "Death Note Volume 1 Cover",
 };
 
-export const fullmetalAlchemistVol1: BookStructure = {
+const fullmetalAlchemistVol1: BookStructure = {
   _id: "5",
   title: "Fullmetal Alchemist Vol. 1",
   author: "Hiromu Arakawa",
@@ -110,7 +110,7 @@ export const fullmetalAlchemistVol1: BookStructure = {
   imageAlt: "Fullmetal Alchemist Volume 1 Cover",
 };
 
-export const bleachVol1: BookStructure = {
+const bleachVol1: BookStructure = {
   _id: "6",
   title: "Bleach Vol. 1",
   author: "Tite Kubo",
@@ -132,7 +132,7 @@ export const bleachVol1: BookStructure = {
   imageAlt: "Bleach Volume 1 Cover",
 };
 
-export const chainsawManVol1: BookStructure = {
+const chainsawManVol1: BookStructure = {
   _id: "7",
   title: "Chainsaw Man Vol. 1",
   author: "Tatsuki Fujimoto",
@@ -154,7 +154,7 @@ export const chainsawManVol1: BookStructure = {
   imageAlt: "Chainsaw Man Volume 1 Cover",
 };
 
-export const tokyoGhoulVol1: BookStructure = {
+const tokyoGhoulVol1: BookStructure = {
   _id: "8",
   title: "Tokyo Ghoul Vol. 1",
   author: "Sui Ishida",
@@ -170,7 +170,7 @@ export const tokyoGhoulVol1: BookStructure = {
   imageAlt: "Tokyo Ghoul Volume 1 Cover",
 };
 
-export const mhaVol1: BookStructure = {
+const mhaVol1: BookStructure = {
   _id: "9",
   title: "My Hero Academia Vol. 1",
   author: "Kohei Horikoshi",
@@ -186,7 +186,7 @@ export const mhaVol1: BookStructure = {
   imageAlt: "My Hero Academia Volume 1 Cover",
 };
 
-export const spyXFamilyVol1: BookStructure = {
+const spyXFamilyVol1: BookStructure = {
   _id: "10",
   title: "Spy x Family Vol. 1",
   author: "Tatsuya Endo",
@@ -202,7 +202,7 @@ export const spyXFamilyVol1: BookStructure = {
   imageAlt: "Spy x Family Volume 1 Cover",
 };
 
-export const vinlandSagaVol1: BookStructure = {
+const vinlandSagaVol1: BookStructure = {
   _id: "11",
   title: "Vinland Saga Vol. 1",
   author: "Makoto Yukimura",
@@ -218,7 +218,7 @@ export const vinlandSagaVol1: BookStructure = {
   imageAlt: "Vinland Saga Volume 1 Cover",
 };
 
-export const demonSlayerVol1: BookStructure = {
+const demonSlayerVol1: BookStructure = {
   _id: "12",
   title: "Demon Slayer: Kimetsu no Yaiba Vol. 1",
   author: "Koyoharu Gotouge",

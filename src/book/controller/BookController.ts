@@ -4,7 +4,7 @@ import { BookControllerStructure, BookRequest, BookResponse } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
 
 class BookController implements BookControllerStructure {
-  constructor(private bookModel: Model<BookStructure>) {}
+  constructor(private readonly bookModel: Model<BookStructure>) {}
 
   public getBooks = async (
     req: BookRequest,
