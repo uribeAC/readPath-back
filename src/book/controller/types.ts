@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { BookStructure } from "../types.js";
 
 export interface BookControllerStructure {
-  getBooks: (req: BookRequest, res: Response) => Promise<void>;
+  getBooks: (req: BookRequest, res: BookResponse) => Promise<void>;
 }
 
 export type BookRequest = Request<
@@ -18,11 +18,11 @@ export type BookQuery = {
 
 export type BookResponse = Response<BooksBodyResponse>;
 
-export interface BooksBodyResponse {
+export type BooksBodyResponse = {
   books: BookStructure[];
   totals: {
     books: number;
     booksRead: number;
     booksToRead: number;
   };
-}
+};
