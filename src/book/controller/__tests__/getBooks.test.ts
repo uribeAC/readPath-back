@@ -168,9 +168,9 @@ describe("Given the getBooks method of BookController", () => {
                 .mockResolvedValue(
                   mangaFixtures
                     .sort(
-                      (postA: BookStructure, postB: BookStructure) =>
-                        postB.firstPublished.getTime() -
-                        postA.firstPublished.getTime(),
+                      (bookA: BookStructure, bookB: BookStructure) =>
+                        bookB.firstPublished.getTime() -
+                        bookA.firstPublished.getTime(),
                     )
                     .slice(minBookPosition, maxBookPosition),
                 ),
@@ -183,8 +183,8 @@ describe("Given the getBooks method of BookController", () => {
     test("Then it should call the response's method json with books 11 and 12", async () => {
       const expectedBooks = mangaFixtures
         .sort(
-          (postA: BookStructure, postB: BookStructure) =>
-            postB.firstPublished.getTime() - postA.firstPublished.getTime(),
+          (bookA: BookStructure, bookB: BookStructure) =>
+            bookB.firstPublished.getTime() - bookA.firstPublished.getTime(),
         )
         .slice(minBookPosition, maxBookPosition);
 
