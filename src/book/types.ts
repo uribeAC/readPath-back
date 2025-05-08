@@ -23,3 +23,15 @@ export interface BookStructure {
 }
 
 type Rating = 0 | 1 | 2 | 3 | 4 | 5;
+
+export type BookData = Omit<
+  BookStructure,
+  "_id" | "firstPublished" | "readDates"
+> & {
+  firstPublished: string;
+  readDates?: {
+    dateStarted?: string;
+    dateFinished?: string;
+    readYear?: number;
+  };
+};
