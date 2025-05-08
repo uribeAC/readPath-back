@@ -20,7 +20,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await Book.deleteMany({ title: "Naruto, Vol. 72" });
+  await Book.deleteOne({ title: "Naruto, Vol. 72" });
   await Book.deleteOne({ title: "Attack on Titan, Vol. 34" });
 });
 
@@ -31,7 +31,7 @@ afterAll(async () => {
 
 describe("Given the GET /books endpoint", () => {
   describe("When it receives a request", () => {
-    test("Then it should return a 200 status code with Naruto, Vol. 72 and Attack on Titan, Vol. 34 books and a total of 2 books, 2 reads and 0 to read", async () => {
+    test("Then it should return a 200 status code ", async () => {
       await Book.create(narutoFinalVolume, attackOnTitanFinalVolume);
 
       const response = await request(app).get("/books");
