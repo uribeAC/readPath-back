@@ -13,6 +13,7 @@ const config: Config = {
     "!**/types.ts",
     "!server/startServer.ts",
     "!database/connectToDatabase.ts",
+    "!server/middlewares/handleCors/handleCors.ts",
   ],
   ...createDefaultPreset(),
 };
