@@ -8,4 +8,8 @@ const bookController = new BookController(Book);
 
 booksRouter.get("/", bookController.getBooks);
 
+booksRouter.patch("/mark-as-read/:bookId", bookController.markAsRead);
+
+booksRouter.patch("/mark-as-toread/:bookId", bookController.markAsToRead);
+
 export default booksRouter;
