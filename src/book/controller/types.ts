@@ -8,6 +8,11 @@ export interface BookControllerStructure {
     res: Response,
     next: NextFunction,
   ) => Promise<void>;
+  markAsToRead: (
+    req: BookRequest,
+    res: Response,
+    next: NextFunction,
+  ) => Promise<void>;
 }
 
 export type BookRequest = Request<
