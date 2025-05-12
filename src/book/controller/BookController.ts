@@ -2,6 +2,8 @@ import { Model } from "mongoose";
 import { BookStructure } from "../types.js";
 import { BookControllerStructure, BookRequest, BookResponse } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
+import { NextFunction, Response } from "express";
+import ServerError from "../../server/ServerError/ServerError.js";
 
 class BookController implements BookControllerStructure {
   constructor(private readonly bookModel: Model<BookStructure>) {}
@@ -43,6 +45,41 @@ class BookController implements BookControllerStructure {
         booksToRead: booksToReadTotal,
       },
     });
+  };
+
+  public markAsRead = async (
+    req: BookRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    const bookId = req.params.bookId;
+
+    const book = await this.bookModel.findById(bookId).exec();
+
+    if (!book) {
+      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
+
+      next(error);
+
+      return;
+    }
+
+    if (book.state === "read") {
+      const error = new ServerError(
+        statusCodes.CONFLICT,
+        "Book is already marked as Read",
+      );
+
+      next(error);
+
+      return;
+    }
+
+    const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
+      state: "read",
+    });
+
+    res.status(statusCodes.OK).json({ book: updatedBook });
   };
 }
 
