@@ -57,7 +57,7 @@ class BookController implements BookControllerStructure {
     const book = await this.bookModel.findById(bookId).exec();
 
     if (!book) {
-      const error = new ServerError(400, "Book not found");
+      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
 
       next(error);
 
@@ -65,16 +65,21 @@ class BookController implements BookControllerStructure {
     }
 
     if (book.state === "read") {
-      const error = new ServerError(400, "Book is already Read");
+      const error = new ServerError(
+        statusCodes.CONFLICT,
+        "Book is already marked as Read",
+      );
 
       next(error);
 
       return;
     }
 
-    const updatedBook = book.updateOne({ state: "read" });
+    const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
+      state: "read",
+    });
 
-    res.status(200).json({ book: updatedBook });
+    res.status(statusCodes.OK).json({ book: updatedBook });
   };
 }
 
