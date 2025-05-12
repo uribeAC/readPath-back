@@ -81,6 +81,41 @@ class BookController implements BookControllerStructure {
 
     res.status(statusCodes.OK).json({ book: updatedBook });
   };
+
+  public markAsToRead = async (
+    req: BookRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    const bookId = req.params.bookId;
+
+    const book = await this.bookModel.findById(bookId).exec();
+
+    if (!book) {
+      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
+
+      next(error);
+
+      return;
+    }
+
+    if (book.state === "to read") {
+      const error = new ServerError(
+        statusCodes.CONFLICT,
+        "Book is already marked as To read",
+      );
+
+      next(error);
+
+      return;
+    }
+
+    const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
+      state: "to read",
+    });
+
+    res.status(statusCodes.OK).json({ book: updatedBook });
+  };
 }
 
 export default BookController;
