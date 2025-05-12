@@ -6,7 +6,7 @@ import statusCodes from "../../globals/statusCodes.js";
 import ServerError from "../../server/ServerError/ServerError.js";
 
 class BookController implements BookControllerStructure {
-  private checkBookState = async (
+  private readonly checkBookState = async (
     req: BookRequest,
     next: NextFunction,
     bookId: string,
@@ -29,8 +29,6 @@ class BookController implements BookControllerStructure {
       );
 
       next(error);
-
-      return;
     }
   };
 

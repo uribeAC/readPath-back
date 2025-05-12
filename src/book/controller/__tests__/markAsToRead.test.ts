@@ -99,37 +99,37 @@ describe("Given the markAsToRead method of BookController", () => {
 
       expect(next).toHaveBeenCalledWith(error);
     });
+  });
 
-    describe("When it receives a request with Akira Vol.1 book id that is not in the database", () => {
-      test("Then it should call the received next method with 404 'Book not found' error", async () => {
-        const req: Pick<BookRequest, "params"> = {
-          params: { bookId: "Akira-vol.1" },
-        };
+  describe("When it receives a request with Akira Vol.1 book id that is not in the database", () => {
+    test("Then it should call the received next method with 404 'Book not found' error", async () => {
+      const req: Pick<BookRequest, "params"> = {
+        params: { bookId: "Akira-vol.1" },
+      };
 
-        const bookModel: Pick<
-          Model<BookStructure>,
-          "findById" | "findByIdAndUpdate"
-        > = {
-          findById: jest.fn().mockReturnValue({
-            exec: jest.fn().mockResolvedValue(null),
-          }),
-          findByIdAndUpdate: jest.fn().mockResolvedValue(null),
-        };
+      const bookModel: Pick<
+        Model<BookStructure>,
+        "findById" | "findByIdAndUpdate"
+      > = {
+        findById: jest.fn().mockReturnValue({
+          exec: jest.fn().mockResolvedValue(null),
+        }),
+        findByIdAndUpdate: jest.fn().mockResolvedValue(null),
+      };
 
-        const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
+      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
 
-        const bookController = new BookController(
-          bookModel as Model<BookStructure>,
-        );
+      const bookController = new BookController(
+        bookModel as Model<BookStructure>,
+      );
 
-        await bookController.markAsToRead(
-          req as BookRequest,
-          res as BookResponse,
-          next as NextFunction,
-        );
+      await bookController.markAsToRead(
+        req as BookRequest,
+        res as BookResponse,
+        next as NextFunction,
+      );
 
-        expect(next).toHaveBeenCalledWith(error);
-      });
+      expect(next).toHaveBeenCalledWith(error);
     });
   });
 });
