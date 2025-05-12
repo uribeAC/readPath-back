@@ -7,7 +7,6 @@ import ServerError from "../../server/ServerError/ServerError.js";
 
 class BookController implements BookControllerStructure {
   private readonly checkBookState = async (
-    req: BookRequest,
     next: NextFunction,
     bookId: string,
     actualState: "read" | "to read",
@@ -80,7 +79,7 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
-    this.checkBookState(req, next, bookId, "read");
+    this.checkBookState(next, bookId, "read");
 
     const updatedBook = await this.bookModel.findByIdAndUpdate(
       bookId,
@@ -100,7 +99,7 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
-    this.checkBookState(req, next, bookId, "to read");
+    this.checkBookState(next, bookId, "to read");
 
     const updatedBook = await this.bookModel.findByIdAndUpdate(
       bookId,

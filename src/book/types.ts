@@ -35,3 +35,7 @@ export type BookData = Omit<
     readYear?: number;
   };
 };
+
+export interface responseBodyError {
+  error: string;
+}

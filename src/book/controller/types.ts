@@ -40,3 +40,7 @@ export type BooksBodyResponse = {
     booksToRead: number;
   };
 };
+
+export type BookBodyResponse = {
+  book: BookStructure;
+};
