@@ -1,8 +1,8 @@
 import { Model } from "mongoose";
+import { NextFunction, Response } from "express";
 import { BookStructure } from "../types.js";
 import { BookControllerStructure, BookRequest, BookResponse } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
-import { NextFunction, Response } from "express";
 import ServerError from "../../server/ServerError/ServerError.js";
 
 class BookController implements BookControllerStructure {

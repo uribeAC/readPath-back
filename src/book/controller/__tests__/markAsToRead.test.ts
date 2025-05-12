@@ -14,7 +14,7 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-describe("Given the markAsRead method of BookController", () => {
+describe("Given the markAsToRead method of BookController", () => {
   const res: Pick<BookResponse, "status" | "json"> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
@@ -22,9 +22,9 @@ describe("Given the markAsRead method of BookController", () => {
 
   const next = jest.fn();
 
-  describe("When it receives a request with Dragon Ball, Vol. 1 book id and it's marked as 'To read'", () => {
+  describe("When it receives a request with Dragon Ball, Vol. 1 book id and it's marked as 'Read'", () => {
     const req: Pick<BookRequest, "params"> = {
-      params: { bookId: dragonBallVol1ToRead._id },
+      params: { bookId: dragonBallVol1Read._id },
     };
 
     const bookModel: Pick<
@@ -32,9 +32,9 @@ describe("Given the markAsRead method of BookController", () => {
       "findById" | "findByIdAndUpdate"
     > = {
       findById: jest.fn().mockReturnValue({
-        exec: jest.fn().mockResolvedValue(dragonBallVol1ToRead),
+        exec: jest.fn().mockResolvedValue(dragonBallVol1Read),
       }),
-      findByIdAndUpdate: jest.fn().mockResolvedValue(dragonBallVol1Read),
+      findByIdAndUpdate: jest.fn().mockResolvedValue(dragonBallVol1ToRead),
     };
 
     test("Then it should call the response's method status with 200", async () => {
@@ -42,7 +42,7 @@ describe("Given the markAsRead method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.markAsRead(
+      await bookController.markAsToRead(
         req as BookRequest,
         res as BookResponse,
         next as NextFunction,
@@ -51,25 +51,25 @@ describe("Given the markAsRead method of BookController", () => {
       expect(res.status).toHaveBeenCalledWith(statusCodes.OK);
     });
 
-    test("Then it should call the response's method json with Dragon Ball, Vol. 1 book marked as 'Read'", async () => {
+    test("Then it should call the response's method json with Dragon Ball, Vol. 1 book marked as 'To read'", async () => {
       const bookController = new BookController(
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.markAsRead(
+      await bookController.markAsToRead(
         req as BookRequest,
         res as BookResponse,
         next as NextFunction,
       );
 
-      expect(res.json).toHaveBeenCalledWith({ book: dragonBallVol1Read });
+      expect(res.json).toHaveBeenCalledWith({ book: dragonBallVol1ToRead });
     });
   });
 
-  describe("When it receives a request with Dragon Ball Vol.1 book id and it's marked as 'Read'", () => {
-    test("Then it should call the received next method with 409 'Book is already marked as Read' error", async () => {
+  describe("When it receives a request with Dragon Ball Vol.1 book id and it's marked as 'To read'", () => {
+    test("Then it should call the received next method with 409 'Book is already marked as To read' error", async () => {
       const req: Pick<BookRequest, "params"> = {
-        params: { bookId: dragonBallVol1Read._id },
+        params: { bookId: dragonBallVol1ToRead._id },
       };
 
       const bookModel: Pick<
@@ -77,21 +77,21 @@ describe("Given the markAsRead method of BookController", () => {
         "findById" | "findByIdAndUpdate"
       > = {
         findById: jest.fn().mockReturnValue({
-          exec: jest.fn().mockResolvedValue(dragonBallVol1Read),
+          exec: jest.fn().mockResolvedValue(dragonBallVol1ToRead),
         }),
-        findByIdAndUpdate: jest.fn().mockResolvedValue(dragonBallVol1Read),
+        findByIdAndUpdate: jest.fn().mockResolvedValue(dragonBallVol1ToRead),
       };
 
       const error = new ServerError(
         statusCodes.CONFLICT,
-        "Book is already marked as Read",
+        "Book is already marked as To read",
       );
 
       const bookController = new BookController(
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.markAsRead(
+      await bookController.markAsToRead(
         req as BookRequest,
         res as BookResponse,
         next as NextFunction,
@@ -122,7 +122,7 @@ describe("Given the markAsRead method of BookController", () => {
           bookModel as Model<BookStructure>,
         );
 
-        await bookController.markAsRead(
+        await bookController.markAsToRead(
           req as BookRequest,
           res as BookResponse,
           next as NextFunction,
