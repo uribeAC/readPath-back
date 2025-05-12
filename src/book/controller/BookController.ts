@@ -82,9 +82,13 @@ class BookController implements BookControllerStructure {
 
     this.checkBookState(req, next, bookId, "read");
 
-    const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
-      state: "read",
-    });
+    const updatedBook = await this.bookModel.findByIdAndUpdate(
+      bookId,
+      {
+        state: "read",
+      },
+      { new: true },
+    );
 
     res.status(statusCodes.OK).json({ book: updatedBook });
   };
@@ -98,9 +102,13 @@ class BookController implements BookControllerStructure {
 
     this.checkBookState(req, next, bookId, "to read");
 
-    const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
-      state: "to read",
-    });
+    const updatedBook = await this.bookModel.findByIdAndUpdate(
+      bookId,
+      {
+        state: "to read",
+      },
+      { new: true },
+    );
 
     res.status(statusCodes.OK).json({ book: updatedBook });
   };
