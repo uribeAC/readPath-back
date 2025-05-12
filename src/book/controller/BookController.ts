@@ -6,6 +6,34 @@ import statusCodes from "../../globals/statusCodes.js";
 import ServerError from "../../server/ServerError/ServerError.js";
 
 class BookController implements BookControllerStructure {
+  private checkBookState = async (
+    req: BookRequest,
+    next: NextFunction,
+    bookId: string,
+    actualState: "read" | "to read",
+  ): Promise<void> => {
+    const book = await this.bookModel.findById(bookId).exec();
+
+    if (!book) {
+      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
+
+      next(error);
+
+      return;
+    }
+
+    if (book.state === actualState) {
+      const error = new ServerError(
+        statusCodes.CONFLICT,
+        `Book is already marked as ${actualState}`,
+      );
+
+      next(error);
+
+      return;
+    }
+  };
+
   constructor(private readonly bookModel: Model<BookStructure>) {}
 
   public getBooks = async (
@@ -54,26 +82,7 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
-    const book = await this.bookModel.findById(bookId).exec();
-
-    if (!book) {
-      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
-
-      next(error);
-
-      return;
-    }
-
-    if (book.state === "read") {
-      const error = new ServerError(
-        statusCodes.CONFLICT,
-        "Book is already marked as Read",
-      );
-
-      next(error);
-
-      return;
-    }
+    this.checkBookState(req, next, bookId, "read");
 
     const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
       state: "read",
@@ -89,26 +98,7 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
-    const book = await this.bookModel.findById(bookId).exec();
-
-    if (!book) {
-      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
-
-      next(error);
-
-      return;
-    }
-
-    if (book.state === "to read") {
-      const error = new ServerError(
-        statusCodes.CONFLICT,
-        "Book is already marked as To read",
-      );
-
-      next(error);
-
-      return;
-    }
+    this.checkBookState(req, next, bookId, "to read");
 
     const updatedBook = await this.bookModel.findByIdAndUpdate(bookId, {
       state: "to read",

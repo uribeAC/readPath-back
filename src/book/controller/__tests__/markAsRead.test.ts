@@ -84,7 +84,7 @@ describe("Given the markAsRead method of BookController", () => {
 
       const error = new ServerError(
         statusCodes.CONFLICT,
-        "Book is already marked as Read",
+        "Book is already marked as read",
       );
 
       const bookController = new BookController(
