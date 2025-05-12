@@ -79,7 +79,7 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
-    this.checkBookState(next, bookId, "read");
+    await this.checkBookState(next, bookId, "read");
 
     const updatedBook = await this.bookModel.findByIdAndUpdate(
       bookId,
@@ -99,7 +99,7 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
-    this.checkBookState(next, bookId, "to read");
+    await this.checkBookState(next, bookId, "to read");
 
     const updatedBook = await this.bookModel.findByIdAndUpdate(
       bookId,
