@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 import { BookStructure } from "../../types.js";
-import { BookRequest, BookResponse } from "../types.js";
+import { BookRequest, BooksResponse } from "../types.js";
 import { mangaFixtures as mangaFixturesOriginal } from "../../fixtures/fixtures.js";
 import BookController from "../BookController.js";
 import statusCodes from "../../../globals/statusCodes.js";
@@ -15,7 +15,7 @@ beforeEach(() => {
 describe("Given the getBooks method of BookController", () => {
   const booksPerPageNumber = 10;
 
-  const res: Pick<BookResponse, "status" | "json"> = {
+  const res: Pick<BooksResponse, "status" | "json"> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
   };
@@ -61,7 +61,7 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BookResponse);
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
 
       expect(res.status).toHaveBeenCalledWith(statusCodes.OK);
     });
@@ -76,7 +76,7 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BookResponse);
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -92,7 +92,7 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BookResponse);
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -108,7 +108,7 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BookResponse);
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -126,7 +126,7 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BookResponse);
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -192,7 +192,7 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BookResponse);
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({

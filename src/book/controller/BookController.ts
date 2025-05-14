@@ -1,7 +1,12 @@
 import { Model } from "mongoose";
-import { NextFunction, Response } from "express";
+import { NextFunction } from "express";
 import { BookStructure } from "../types.js";
-import { BookControllerStructure, BookRequest, BookResponse } from "./types.js";
+import {
+  BookControllerStructure,
+  BookRequest,
+  BookResponse,
+  BooksResponse,
+} from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
 import ServerError from "../../server/ServerError/ServerError.js";
 
@@ -31,11 +36,35 @@ class BookController implements BookControllerStructure {
     }
   };
 
+  private readonly nextUpdateError = (next: NextFunction): void => {
+    const error = new ServerError(
+      statusCodes.INTERNAL_SERVER_ERROR,
+      "Couldn't update book",
+    );
+
+    next(error);
+  };
+
+  private readonly updateBook = async (
+    bookId: string,
+    state: "read" | "to read",
+  ): Promise<BookStructure | null> => {
+    const updatedBook = await this.bookModel.findByIdAndUpdate(
+      bookId,
+      {
+        state,
+      },
+      { new: true },
+    );
+
+    return updatedBook;
+  };
+
   constructor(private readonly bookModel: Model<BookStructure>) {}
 
   public getBooks = async (
     req: BookRequest,
-    res: BookResponse,
+    res: BooksResponse,
   ): Promise<void> => {
     let pageNumber = req.query.page;
 
@@ -74,42 +103,69 @@ class BookController implements BookControllerStructure {
 
   public markAsRead = async (
     req: BookRequest,
-    res: Response,
+    res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
     await this.checkBookState(next, bookId, "read");
 
-    const updatedBook = await this.bookModel.findByIdAndUpdate(
-      bookId,
-      {
-        state: "read",
-      },
-      { new: true },
-    );
+    const updatedBook = await this.updateBook(bookId, "read");
+
+    if (!updatedBook) {
+      this.nextUpdateError(next);
+      return;
+    }
 
     res.status(statusCodes.OK).json({ book: updatedBook });
   };
 
   public markAsToRead = async (
     req: BookRequest,
-    res: Response,
+    res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
     const bookId = req.params.bookId;
 
     await this.checkBookState(next, bookId, "to read");
 
-    const updatedBook = await this.bookModel.findByIdAndUpdate(
-      bookId,
-      {
-        state: "to read",
-      },
-      { new: true },
-    );
+    const updatedBook = await this.updateBook(bookId, "to read");
+
+    if (!updatedBook) {
+      this.nextUpdateError(next);
+      return;
+    }
 
     res.status(statusCodes.OK).json({ book: updatedBook });
+  };
+
+  public addBook = async (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { book } = req.body;
+
+    const databaseBook = await this.bookModel
+      .findOne({ title: book.title })
+      .exec();
+
+    if (databaseBook) {
+      const error = new ServerError(409, "Book already exists");
+
+      next(error);
+
+      return;
+    }
+
+    if (book.state === "to read") {
+      delete book.yourRating;
+      delete book.readDates;
+    }
+
+    const addedBook = await this.bookModel.insertOne(book);
+
+    res.status(statusCodes.CREATED).json({ book: addedBook });
   };
 }
 
