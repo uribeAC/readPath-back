@@ -36,6 +36,30 @@ class BookController implements BookControllerStructure {
     }
   };
 
+  private readonly nextUpdateError = (next: NextFunction): void => {
+    const error = new ServerError(
+      statusCodes.INTERNAL_SERVER_ERROR,
+      "Couldn't update book",
+    );
+
+    next(error);
+  };
+
+  private readonly updateBook = async (
+    bookId: string,
+    state: "read" | "to read",
+  ): Promise<BookStructure | null> => {
+    const updatedBook = await this.bookModel.findByIdAndUpdate(
+      bookId,
+      {
+        state,
+      },
+      { new: true },
+    );
+
+    return updatedBook;
+  };
+
   constructor(private readonly bookModel: Model<BookStructure>) {}
 
   public getBooks = async (
@@ -86,22 +110,10 @@ class BookController implements BookControllerStructure {
 
     await this.checkBookState(next, bookId, "read");
 
-    const updatedBook = await this.bookModel.findByIdAndUpdate(
-      bookId,
-      {
-        state: "read",
-      },
-      { new: true },
-    );
+    const updatedBook = await this.updateBook(bookId, "read");
 
     if (!updatedBook) {
-      const error = new ServerError(
-        statusCodes.INTERNAL_SERVER_ERROR,
-        "Couldn't update book",
-      );
-
-      next(error);
-
+      this.nextUpdateError(next);
       return;
     }
 
@@ -117,22 +129,10 @@ class BookController implements BookControllerStructure {
 
     await this.checkBookState(next, bookId, "to read");
 
-    const updatedBook = await this.bookModel.findByIdAndUpdate(
-      bookId,
-      {
-        state: "to read",
-      },
-      { new: true },
-    );
+    const updatedBook = await this.updateBook(bookId, "to read");
 
     if (!updatedBook) {
-      const error = new ServerError(
-        statusCodes.INTERNAL_SERVER_ERROR,
-        "Couldn't update book",
-      );
-
-      next(error);
-
+      this.nextUpdateError(next);
       return;
     }
 
