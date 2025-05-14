@@ -12,4 +12,6 @@ booksRouter.patch("/mark-as-read/:bookId", bookController.markAsRead);
 
 booksRouter.patch("/mark-as-toread/:bookId", bookController.markAsToRead);
 
+booksRouter.post("/", bookController.addBook);
+
 export default booksRouter;
