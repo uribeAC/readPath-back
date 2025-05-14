@@ -15,6 +15,8 @@ app.use(morgan("dev"));
 
 app.use(handleCors);
 
+app.use(express.json());
+
 app.get("/", handleHealthCheck);
 
 app.use("/books", booksRouter);

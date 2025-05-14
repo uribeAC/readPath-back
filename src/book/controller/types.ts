@@ -1,14 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-import { BookStructure } from "../types.js";
+import { BookData, BookStructure } from "../types.js";
 
 export interface BookControllerStructure {
-  getBooks: (req: BookRequest, res: BookResponse) => Promise<void>;
+  getBooks: (req: BookRequest, res: BooksResponse) => Promise<void>;
   markAsRead: (
     req: BookRequest,
-    res: Response,
+    res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
   markAsToRead: (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ) => Promise<void>;
+  addBook: (
     req: BookRequest,
     res: Response,
     next: NextFunction,
@@ -18,7 +23,7 @@ export interface BookControllerStructure {
 export type BookRequest = Request<
   BookParams,
   Record<string, unknown>,
-  Record<string, unknown>,
+  BookBody,
   BookQuery
 >;
 
@@ -30,7 +35,13 @@ export type BookParams = {
   bookId: string;
 };
 
-export type BookResponse = Response<BooksBodyResponse>;
+export type BookBody = {
+  book: BookData;
+};
+
+export type BooksResponse = Response<BooksBodyResponse>;
+
+export type BookResponse = Response<BookBodyResponse>;
 
 export type BooksBodyResponse = {
   books: BookStructure[];
