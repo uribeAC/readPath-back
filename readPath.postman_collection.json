@@ -32,24 +32,12 @@
     },
     {
       "name": "/books",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
       "request": {
         "auth": {
           "type": "noauth"
         },
         "method": "GET",
         "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
         "url": {
           "raw": "https://alex-uribe-202502-back.onrender.com/books",
           "protocol": "https",
@@ -67,20 +55,11 @@
         },
         "method": "PATCH",
         "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
         "url": {
-          "raw": "https://alex-uribe-202502-back.onrender.com//books/mark-as-read/681b126152db6fc282a4b7f0",
+          "raw": "https://alex-uribe-202502-back.onrender.com/books/mark-as-read/681b126152db6fc282a4b7f0",
           "protocol": "https",
           "host": ["alex-uribe-202502-back", "onrender", "com"],
-          "path": ["", "books", "mark-as-read", "681b126152db6fc282a4b7f0"]
+          "path": ["books", "mark-as-read", "681b126152db6fc282a4b7f0"]
         }
       },
       "response": []
@@ -93,20 +72,11 @@
         },
         "method": "PATCH",
         "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
         "url": {
-          "raw": "https://alex-uribe-202502-back.onrender.com//books/mark-as-toread/681b126152db6fc282a4b7f0",
+          "raw": "https://alex-uribe-202502-back.onrender.com/books/mark-as-toread/681b126152db6fc282a4b7f0",
           "protocol": "https",
           "host": ["alex-uribe-202502-back", "onrender", "com"],
-          "path": ["", "books", "mark-as-toread", "681b126152db6fc282a4b7f0"]
+          "path": ["books", "mark-as-toread", "681b126152db6fc282a4b7f0"]
         }
       },
       "response": []
