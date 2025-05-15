@@ -8,7 +8,7 @@
   },
   "item": [
     {
-      "name": "http://localhost:4000/books/",
+      "name": "/books",
       "request": {
         "method": "POST",
         "header": [],
@@ -22,17 +22,16 @@
           }
         },
         "url": {
-          "raw": "http://localhost:4000/books/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
+          "raw": "https://alex-uribe-202502-back.onrender.com/books/",
+          "protocol": "https",
+          "host": ["alex-uribe-202502-back", "onrender", "com"],
           "path": ["books", ""]
         }
       },
       "response": []
     },
     {
-      "name": "http://localhost:4000/books/",
+      "name": "/books",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -52,17 +51,16 @@
           }
         },
         "url": {
-          "raw": "http://localhost:4000/books/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["books", ""]
+          "raw": "https://alex-uribe-202502-back.onrender.com/books",
+          "protocol": "https",
+          "host": ["alex-uribe-202502-back", "onrender", "com"],
+          "path": ["books"]
         }
       },
       "response": []
     },
     {
-      "name": "http://localhost:4000/books/mark-as-read/:bookId",
+      "name": "/books/mark-as-read/:bookId",
       "request": {
         "auth": {
           "type": "noauth"
@@ -79,17 +77,16 @@
           }
         },
         "url": {
-          "raw": "http://localhost:4000/books/mark-as-read/681b126152db6fc282a4b7f0",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["books", "mark-as-read", "681b126152db6fc282a4b7f0"]
+          "raw": "https://alex-uribe-202502-back.onrender.com//books/mark-as-read/681b126152db6fc282a4b7f0",
+          "protocol": "https",
+          "host": ["alex-uribe-202502-back", "onrender", "com"],
+          "path": ["", "books", "mark-as-read", "681b126152db6fc282a4b7f0"]
         }
       },
       "response": []
     },
     {
-      "name": "http://localhost:4000/books/mark-as-toread/:bookId",
+      "name": "/books/mark-as-toread/:bookId",
       "request": {
         "auth": {
           "type": "noauth"
@@ -106,11 +103,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:4000/books/mark-as-toread/681b126152db6fc282a4b7f0",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["books", "mark-as-toread", "681b126152db6fc282a4b7f0"]
+          "raw": "https://alex-uribe-202502-back.onrender.com//books/mark-as-toread/681b126152db6fc282a4b7f0",
+          "protocol": "https",
+          "host": ["alex-uribe-202502-back", "onrender", "com"],
+          "path": ["", "books", "mark-as-toread", "681b126152db6fc282a4b7f0"]
         }
       },
       "response": []
