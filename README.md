@@ -65,11 +65,85 @@ The backend server runs on [http://localhost:4000](http://localhost:4000) by def
 
 ## 📦 API Endpoints
 
-The Express backend exposes endpoints such as:
+The Express backend exposes the following RESTful endpoints to manage your book collection:
 
-- In progress... ⚒️
+### 📘 Books
 
-Data is stored in a MongoDB database.
+#### ➕ Create a book
+
+`POST /books/`
+
+Creates a new book in the collection.
+
+- **Example Body** (JSON):
+
+```json
+{
+  "book": {
+    "title": "Dragon Ball, Vol. 1",
+    "author": "Akira Toriyama",
+    "saga": {
+      "name": "Dragon Ball",
+      "bookNumber": 1
+    },
+    "description": "Follow the adventures of a young monkey-tailed boy named Goku...",
+    "genres": ["Manga", "Action", "Adventure", "Comedy"],
+    "pages": 192,
+    "firstPublished": "2003-05-06",
+    "state": "read",
+    "yourRating": 5,
+    "readDates": {
+      "dateStarted": "2021-03-15",
+      "dateFinished": "2021-03-17",
+      "readYear": 2021
+    },
+    "coverImageUrlSmall": "https://...",
+    "coverImageUrlBig": "https://...",
+    "imageAlt": "Dragon Ball Volume 1 cover featuring young Goku riding a cloud"
+  }
+}
+```
+
+---
+
+#### 📚 Get all books
+
+`GET /books/`
+
+Retrieves the full list of books in the database.
+
+---
+
+#### ✅ Mark a book as **read**
+
+`PATCH /books/mark-as-read/:bookId`
+
+Updates the book with the given `bookId` and sets its state to `"read"`.
+
+- Example:  
+  `PATCH /books/mark-as-read/681b126152db6fc282a4b7f0`
+
+---
+
+#### 📌 Mark a book as **to read**
+
+`PATCH /books/mark-as-toread/:bookId`
+
+Updates the book with the given `bookId` and sets its state to `"to read"`.
+
+- Example:  
+  `PATCH /books/mark-as-toread/681b126152db6fc282a4b7f0`
+
+---
+
+### 🧠 Notes
+
+- All requests should include the header:
+  ```
+  Content-Type: application/json
+  ```
+- `bookId` is a MongoDB ObjectId and must be valid to avoid errors.
+- The `state` field accepts two values: `"read"` or `"to read"`.
 
 ### Database
 
