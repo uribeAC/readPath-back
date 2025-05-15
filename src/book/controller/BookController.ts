@@ -106,7 +106,7 @@ class BookController implements BookControllerStructure {
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
-    const bookId = req.params.bookId;
+    const { bookId } = req.params;
 
     await this.checkBookState(next, bookId, "read");
 
@@ -125,7 +125,7 @@ class BookController implements BookControllerStructure {
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
-    const bookId = req.params.bookId;
+    const { bookId } = req.params;
 
     await this.checkBookState(next, bookId, "to read");
 

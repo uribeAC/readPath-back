@@ -1,0 +1,119 @@
+{
+  "info": {
+    "_postman_id": "0dc02551-0a02-48d7-9357-e3c98797318f",
+    "name": "readPath",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43656419",
+    "_collection_link": "https://uribeac-1812477.postman.co/workspace/uribeAC's-Workspace~7be884f6-ca28-4e92-8be2-7649377bdf66/collection/43656419-0dc02551-0a02-48d7-9357-e3c98797318f?action=share&source=collection_link&creator=43656419"
+  },
+  "item": [
+    {
+      "name": "http://localhost:4000/books/",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/books/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["books", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/books/",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/books/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["books", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/books/mark-as-read/:bookId",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/books/mark-as-read/681b126152db6fc282a4b7f0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["books", "mark-as-read", "681b126152db6fc282a4b7f0"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/books/mark-as-toread/:bookId",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/books/mark-as-toread/681b126152db6fc282a4b7f0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["books", "mark-as-toread", "681b126152db6fc282a4b7f0"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
