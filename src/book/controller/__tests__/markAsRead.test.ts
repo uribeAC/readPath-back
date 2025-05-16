@@ -8,7 +8,10 @@ import { BookStructure } from "../../types.js";
 import { BookRequest, BookResponse } from "../types.js";
 import BookController from "../BookController.js";
 import statusCodes from "../../../globals/statusCodes.js";
-import ServerError from "../../../server/ServerError/ServerError.js";
+import {
+  error404BookNotFound,
+  error409BookRead,
+} from "../../../server/ServerError/data.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -82,11 +85,6 @@ describe("Given the markAsRead method of BookController", () => {
         findByIdAndUpdate: jest.fn().mockResolvedValue(dragonBallVol1Read),
       };
 
-      const error = new ServerError(
-        statusCodes.CONFLICT,
-        "Book is already marked as read",
-      );
-
       const bookController = new BookController(
         bookModel as Model<BookStructure>,
       );
@@ -97,7 +95,7 @@ describe("Given the markAsRead method of BookController", () => {
         next as NextFunction,
       );
 
-      expect(next).toHaveBeenCalledWith(error);
+      expect(next).toHaveBeenCalledWith(error409BookRead);
     });
   });
 
@@ -117,8 +115,6 @@ describe("Given the markAsRead method of BookController", () => {
         findByIdAndUpdate: jest.fn().mockResolvedValue(null),
       };
 
-      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
-
       const bookController = new BookController(
         bookModel as Model<BookStructure>,
       );
@@ -129,7 +125,7 @@ describe("Given the markAsRead method of BookController", () => {
         next as NextFunction,
       );
 
-      expect(next).toHaveBeenCalledWith(error);
+      expect(next).toHaveBeenCalledWith(error404BookNotFound);
     });
   });
 });

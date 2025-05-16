@@ -36,6 +36,6 @@ export type BookData = Omit<
   };
 };
 
-export interface responseBodyError {
+export interface ResponseBodyError {
   error: string;
 }

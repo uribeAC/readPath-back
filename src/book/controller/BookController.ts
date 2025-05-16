@@ -9,6 +9,11 @@ import {
 } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
 import ServerError from "../../server/ServerError/ServerError.js";
+import {
+  error404BookNotFound,
+  error409BookExists,
+  error500NotUpdate,
+} from "../../server/ServerError/data.js";
 
 class BookController implements BookControllerStructure {
   private readonly checkBookState = async (
@@ -19,9 +24,7 @@ class BookController implements BookControllerStructure {
     const book = await this.bookModel.findById(bookId).exec();
 
     if (!book) {
-      const error = new ServerError(statusCodes.NOT_FOUND, "Book not found");
-
-      next(error);
+      next(error404BookNotFound);
 
       return;
     }
@@ -34,15 +37,6 @@ class BookController implements BookControllerStructure {
 
       next(error);
     }
-  };
-
-  private readonly nextUpdateError = (next: NextFunction): void => {
-    const error = new ServerError(
-      statusCodes.INTERNAL_SERVER_ERROR,
-      "Couldn't update book",
-    );
-
-    next(error);
   };
 
   private readonly updateBook = async (
@@ -113,7 +107,7 @@ class BookController implements BookControllerStructure {
     const updatedBook = await this.updateBook(bookId, "read");
 
     if (!updatedBook) {
-      this.nextUpdateError(next);
+      next(error500NotUpdate);
       return;
     }
 
@@ -132,7 +126,7 @@ class BookController implements BookControllerStructure {
     const updatedBook = await this.updateBook(bookId, "to read");
 
     if (!updatedBook) {
-      this.nextUpdateError(next);
+      next(error500NotUpdate);
       return;
     }
 
@@ -151,9 +145,7 @@ class BookController implements BookControllerStructure {
       .exec();
 
     if (databaseBook) {
-      const error = new ServerError(409, "Book already exists");
-
-      next(error);
+      next(error409BookExists);
 
       return;
     }
