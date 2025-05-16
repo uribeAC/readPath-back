@@ -8,7 +8,7 @@ import { BookRequest, BookResponse } from "../types.js";
 import BookController from "../BookController.js";
 import { NextFunction } from "express";
 import statusCodes from "../../../globals/statusCodes.js";
-import ServerError from "../../../server/ServerError/ServerError.js";
+import { error409BookExists } from "../../../server/ServerError/data.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -70,15 +70,13 @@ describe("Given the addBook method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      const error = new ServerError(409, "Book already exists");
-
       await bookController.addBook(
         req as BookRequest,
         res as BookResponse,
         next as NextFunction,
       );
 
-      expect(next).toHaveBeenCalledWith(error);
+      expect(next).toHaveBeenCalledWith(error409BookExists);
     });
   });
 });
