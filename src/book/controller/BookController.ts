@@ -127,6 +127,7 @@ class BookController implements BookControllerStructure {
 
     if (!updatedBook) {
       next(error500NotUpdate);
+
       return;
     }
 
@@ -158,6 +159,24 @@ class BookController implements BookControllerStructure {
     const addedBook = await this.bookModel.insertOne(book);
 
     res.status(statusCodes.CREATED).json({ book: addedBook });
+  };
+
+  public deleteBook = async (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { bookId } = req.params;
+
+    const deletedBook = await this.bookModel.findOneAndDelete({ _id: bookId });
+
+    if (!deletedBook) {
+      next(error404BookNotFound);
+
+      return;
+    }
+
+    res.status(statusCodes.OK).json({ book: deletedBook });
   };
 }
 
