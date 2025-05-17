@@ -168,7 +168,9 @@ class BookController implements BookControllerStructure {
   ): Promise<void> => {
     const { bookId } = req.params;
 
-    const deletedBook = await this.bookModel.findOneAndDelete({ _id: bookId });
+    const deletedBook = await this.bookModel
+      .findOneAndDelete({ _id: bookId })
+      .exec();
 
     if (!deletedBook) {
       next(error404BookNotFound);
