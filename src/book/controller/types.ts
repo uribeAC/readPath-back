@@ -3,6 +3,11 @@ import { BookData, BookStructure } from "../types.js";
 
 export interface BookControllerStructure {
   getBooks: (req: BookRequest, res: BooksResponse) => Promise<void>;
+  getBookById: (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ) => Promise<void>;
   markAsRead: (
     req: BookRequest,
     res: BookResponse,
