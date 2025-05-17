@@ -9,6 +9,8 @@ const bookController = new BookController(Book);
 
 booksRouter.get("/", bookController.getBooks);
 
+booksRouter.get("/:bookId", isValidId, bookController.getBookById);
+
 booksRouter.patch(
   "/mark-as-read/:bookId",
   isValidId,
