@@ -15,7 +15,12 @@ export interface BookControllerStructure {
   ) => Promise<void>;
   addBook: (
     req: BookRequest,
-    res: Response,
+    res: BookResponse,
+    next: NextFunction,
+  ) => Promise<void>;
+  deleteBook: (
+    req: BookRequest,
+    res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
 }
