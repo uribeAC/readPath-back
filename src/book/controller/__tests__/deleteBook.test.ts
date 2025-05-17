@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
+import { NextFunction } from "express";
 import { narutoVol1 } from "../../fixtures/fixtures.js";
 import { BookStructure } from "../../types.js";
 import { BookRequest, BookResponse } from "../types.js";
 import BookController from "../BookController.js";
-import { NextFunction } from "express";
 import statusCodes from "../../../globals/statusCodes.js";
 import { error404BookNotFound } from "../../../server/ServerError/data.js";
 
@@ -11,7 +11,7 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-describe("given the deleteBook method of BookController", () => {
+describe("Given the deleteBook method of BookController", () => {
   const res: Pick<BookResponse, "status" | "json"> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
