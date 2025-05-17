@@ -95,6 +95,24 @@ class BookController implements BookControllerStructure {
     });
   };
 
+  public getBookById = async (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { bookId } = req.params;
+
+    const book = await this.bookModel.findById(bookId).exec();
+
+    if (!book) {
+      next(error404BookNotFound);
+
+      return;
+    }
+
+    res.status(statusCodes.OK).json({ book: book });
+  };
+
   public markAsRead = async (
     req: BookRequest,
     res: BookResponse,
