@@ -28,6 +28,11 @@ export interface BookControllerStructure {
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
+  modifyBook: (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ) => Promise<void>;
 }
 
 export type BookRequest = Request<
