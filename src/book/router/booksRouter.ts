@@ -21,5 +21,6 @@ booksRouter.patch(
 );
 booksRouter.post("/", bookController.addBook);
 booksRouter.delete("/:bookId", isValidId, bookController.deleteBook);
+booksRouter.put("/:bookId", isValidId, bookController.modifyBook);
 
 export default booksRouter;
