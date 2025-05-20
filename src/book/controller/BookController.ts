@@ -207,10 +207,10 @@ class BookController implements BookControllerStructure {
     const { book } = req.body;
     const { bookId } = req.params;
 
-    const databaseBook = await this.bookModel.findOne({ _id: bookId }).exec();
+    const databaseBook = await this.bookModel.findById(bookId).exec();
 
-    if (databaseBook) {
-      next(error409BookExists);
+    if (!databaseBook) {
+      next(error404BookNotFound);
 
       return;
     }
@@ -222,12 +222,7 @@ class BookController implements BookControllerStructure {
 
     const modifiedBook = await this.bookModel.findOneAndReplace(book);
 
-    if (!modifiedBook) {
-      next(error500NotUpdate);
-      return;
-    }
-
-    res.status(statusCodes.OK).json({ book: modifiedBook });
+    res.status(statusCodes.OK).json({ book: modifiedBook! });
   };
 }
 

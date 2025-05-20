@@ -8,23 +8,18 @@ const booksRouter = Router();
 const bookController = new BookController(Book);
 
 booksRouter.get("/", bookController.getBooks);
-
 booksRouter.get("/:bookId", isValidId, bookController.getBookById);
-
 booksRouter.patch(
   "/mark-as-read/:bookId",
   isValidId,
   bookController.markAsRead,
 );
-
 booksRouter.patch(
   "/mark-as-toread/:bookId",
   isValidId,
   bookController.markAsToRead,
 );
-
 booksRouter.post("/", bookController.addBook);
-
 booksRouter.delete("/:bookId", isValidId, bookController.deleteBook);
 
 export default booksRouter;
