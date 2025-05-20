@@ -198,6 +198,32 @@ class BookController implements BookControllerStructure {
 
     res.status(statusCodes.OK).json({ book: deletedBook });
   };
+
+  public modifyBook = async (
+    req: BookRequest,
+    res: BookResponse,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { book } = req.body;
+    const { bookId } = req.params;
+
+    const databaseBook = await this.bookModel.findById(bookId).exec();
+
+    if (!databaseBook) {
+      next(error404BookNotFound);
+
+      return;
+    }
+
+    if (book.state === "to read") {
+      delete book.yourRating;
+      delete book.readDates;
+    }
+
+    const modifiedBook = await this.bookModel.findOneAndReplace(book);
+
+    res.status(statusCodes.OK).json({ book: modifiedBook! });
+  };
 }
 
 export default BookController;
