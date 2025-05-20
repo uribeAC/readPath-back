@@ -220,7 +220,11 @@ class BookController implements BookControllerStructure {
       delete book.readDates;
     }
 
-    const modifiedBook = await this.bookModel.findOneAndReplace(book);
+    const modifiedBook = await this.bookModel.findOneAndReplace(
+      { _id: bookId },
+      book,
+      { returnOriginal: false },
+    );
 
     res.status(statusCodes.OK).json({ book: modifiedBook! });
   };
