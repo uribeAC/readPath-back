@@ -6,6 +6,7 @@ import {
   BookRequest,
   BookResponse,
   BooksResponse,
+  QueryFilters,
 } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
 import ServerError from "../../server/ServerError/ServerError.js";
@@ -16,6 +17,8 @@ import {
 } from "../../server/ServerError/data.js";
 
 class BookController implements BookControllerStructure {
+  constructor(private readonly bookModel: Model<BookStructure>) {}
+
   private readonly checkBookState = async (
     next: NextFunction,
     bookId: string,
@@ -54,16 +57,25 @@ class BookController implements BookControllerStructure {
     return updatedBook;
   };
 
-  constructor(private readonly bookModel: Model<BookStructure>) {}
-
   public getBooks = async (
     req: BookRequest,
     res: BooksResponse,
   ): Promise<void> => {
     let pageNumber = req.query.page;
+    const state = req.query.state;
+    const genre = req.query.genre;
+    const queryFilters: QueryFilters = {};
 
     if (!pageNumber) {
       pageNumber = "1";
+    }
+
+    if (state) {
+      queryFilters.state = state;
+    }
+
+    if (genre) {
+      queryFilters.genres = genre;
     }
 
     const booksPerPageNumber = 10;
@@ -79,7 +91,7 @@ class BookController implements BookControllerStructure {
     const booksToReadTotal = booksTotal - booksReadTotal;
 
     const books = await this.bookModel
-      .find()
+      .find(queryFilters)
       .sort({ firstPublished: "descending" })
       .skip(booksToSkipNumber)
       .limit(booksPerPageNumber)

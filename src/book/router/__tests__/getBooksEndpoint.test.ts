@@ -66,4 +66,21 @@ describe("Given the GET /books endpoint", () => {
       expect(body.totals.booksToRead).toBe(0);
     });
   });
+
+  describe("When it receives a request with state: read and genre: drama as search params", () => {
+    test("Then it should return Attack on Titan, Vol. 34 book", async () => {
+      await Book.create(narutoFinalVolume, attackOnTitanFinalVolume);
+
+      const response = await request(app).get("/books?state=read&genre=Drama");
+
+      const body = response.body as BooksBodyResponse;
+
+      expect(body.books).not.toContainEqual(
+        expect.objectContaining({ title: "Naruto, Vol. 72" }),
+      );
+      expect(body.books).toContainEqual(
+        expect.objectContaining({ title: "Attack on Titan, Vol. 34" }),
+      );
+    });
+  });
 });

@@ -1,7 +1,12 @@
 import { Model } from "mongoose";
 import { BookStructure } from "../../types.js";
 import { BookRequest, BooksResponse } from "../types.js";
-import { mangaFixtures as mangaFixturesOriginal } from "../../fixtures/fixtures.js";
+import {
+  bleachVol1,
+  mangaFixtures as mangaFixturesOriginal,
+  narutoVol1,
+  onePieceVol1,
+} from "../../fixtures/fixtures.js";
 import BookController from "../BookController.js";
 import statusCodes from "../../../globals/statusCodes.js";
 
@@ -22,7 +27,7 @@ describe("Given the getBooks method of BookController", () => {
 
   describe("When it receives a response", () => {
     const req: Pick<BookRequest, "query"> = {
-      query: { page: "" },
+      query: { page: "", state: "", genre: "" },
     };
 
     const pageNumber = 1;
@@ -144,7 +149,7 @@ describe("Given the getBooks method of BookController", () => {
     const maxBookPosition = minBookPosition + booksPerPageNumber;
 
     const req: Pick<BookRequest, "query"> = {
-      query: { page: pageNumber.toString() },
+      query: { page: pageNumber.toString(), state: "", genre: "" },
     };
 
     const bookModel: Pick<
@@ -187,6 +192,68 @@ describe("Given the getBooks method of BookController", () => {
             bookB.firstPublished.getTime() - bookA.firstPublished.getTime(),
         )
         .slice(minBookPosition, maxBookPosition);
+
+      const bookController = new BookController(
+        bookModel as Model<BookStructure>,
+      );
+
+      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          books: expectedBooks,
+        }),
+      );
+    });
+  });
+
+  describe("When it receives a request with state: read and genre: shounen", () => {
+    const pageNumber = 1;
+    const minBookPosition = (pageNumber - 1) * booksPerPageNumber;
+    const maxBookPosition = minBookPosition + booksPerPageNumber;
+
+    const req: Pick<BookRequest, "query"> = {
+      query: { page: pageNumber.toString(), state: "", genre: "" },
+    };
+
+    const bookModel: Pick<
+      Model<BookStructure>,
+      "find" | "countDocuments" | "where"
+    > = {
+      countDocuments: jest.fn().mockResolvedValue(mangaFixtures.length),
+      where: jest.fn().mockReturnValue({
+        countDocuments: jest
+          .fn()
+          .mockResolvedValue(
+            mangaFixtures.filter((manga) => manga.state === "read").length,
+          ),
+      }),
+      find: jest.fn().mockReturnValue({
+        sort: jest.fn().mockReturnValue({
+          skip: jest.fn().mockReturnValue({
+            limit: jest.fn().mockReturnValue({
+              exec: jest.fn().mockResolvedValue(
+                mangaFixtures
+                  .sort(
+                    (bookA: BookStructure, bookB: BookStructure) =>
+                      bookB.firstPublished.getTime() -
+                      bookA.firstPublished.getTime(),
+                  )
+                  .filter(
+                    (manga) =>
+                      manga.state === "read" &&
+                      manga.genres.some((genre) => genre === "Shounen"),
+                  )
+                  .slice(minBookPosition, maxBookPosition),
+              ),
+            }),
+          }),
+        }),
+      }),
+    };
+
+    test("Then it should call the response's method json with Naruto, One Piece and Bleach Vol's. 1", async () => {
+      const expectedBooks = [bleachVol1, narutoVol1, onePieceVol1];
 
       const bookController = new BookController(
         bookModel as Model<BookStructure>,

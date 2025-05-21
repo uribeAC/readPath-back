@@ -44,7 +44,11 @@ export type BookRequest = Request<
 
 export type BookQuery = {
   page: string;
+  state: string;
+  genre: string;
 };
+
+export type QueryFilters = { state?: string; genres?: string };
 
 export type BookParams = {
   bookId: string;
