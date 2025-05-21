@@ -67,15 +67,16 @@ The backend server runs on [https://alex-uribe-202502-back.onrender.com/](https:
 
 The Express backend exposes the following RESTful endpoints to manage your book collection:
 
+---
+
 ### 📘 Books
 
 #### ➕ Create a book
 
-`POST /books/`
-
+`POST /books/`  
 Creates a new book in the collection.
 
-- **Example Body** (JSON):
+- **Example body**:
 
 ```json
 {
@@ -86,7 +87,7 @@ Creates a new book in the collection.
       "name": "Dragon Ball",
       "bookNumber": 1
     },
-    "description": "Follow the adventures of a young monkey-tailed boy named Goku...",
+    "description": "Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls...",
     "genres": ["Manga", "Action", "Adventure", "Comedy"],
     "pages": 192,
     "firstPublished": "2003-05-06",
@@ -108,17 +109,60 @@ Creates a new book in the collection.
 
 #### 📚 Get all books
 
-`GET /books/`
+`GET /books/`  
+Retrieves all books, optionally filtered by `page`, `state`, or `genre`.
 
-Retrieves the full list of books in the database.
+- Example:  
+  `GET /books?page=2&state=read&genre=Fantasy`
+
+---
+
+#### 🔍 Get a book by ID
+
+`GET /books/:bookId`  
+Returns the book with the specified `bookId`.
+
+- Example:  
+  `GET /books/681b126152db6fc282a4b7f0`
+
+---
+
+#### ✏️ Modify an existing book
+
+`PUT /books/:bookId`  
+Updates an existing book with the specified `bookId`.
+
+- Example:  
+  `PUT /books/681b126152db6fc282a4b7f0`
+
+- **Body must include the full book object**:
+
+```json
+{
+  "book": {
+    "title": "...",
+    "author": "...",
+    "...": "..."
+  }
+}
+```
+
+---
+
+#### 🗑️ Delete a book
+
+`DELETE /books/:bookId`  
+Deletes the book with the specified `bookId`.
+
+- Example:  
+  `DELETE /books/681b126152db6fc282a4b7f0`
 
 ---
 
 #### ✅ Mark a book as **read**
 
-`PATCH /books/mark-as-read/:bookId`
-
-Updates the book with the given `bookId` and sets its state to `"read"`.
+`PATCH /books/mark-as-read/:bookId`  
+Sets the state of the book to `"read"`.
 
 - Example:  
   `PATCH /books/mark-as-read/681b126152db6fc282a4b7f0`
@@ -127,23 +171,22 @@ Updates the book with the given `bookId` and sets its state to `"read"`.
 
 #### 📌 Mark a book as **to read**
 
-`PATCH /books/mark-as-toread/:bookId`
-
-Updates the book with the given `bookId` and sets its state to `"to read"`.
+`PATCH /books/mark-as-toread/:bookId`  
+Sets the state of the book to `"to read"`.
 
 - Example:  
   `PATCH /books/mark-as-toread/681b126152db6fc282a4b7f0`
 
 ---
 
-### 🧠 Notes
+### ⚙️ Notes
 
-- All requests should include the header:
-  ```
+- All requests must include this header:
+  ```http
   Content-Type: application/json
   ```
-- `bookId` is a MongoDB ObjectId and must be valid to avoid errors.
-- The `state` field accepts two values: `"read"` or `"to read"`.
+- `bookId` must be a valid MongoDB ObjectId.
+- Only two states are allowed: `"read"` and `"to read"`.
 
 ### Database
 

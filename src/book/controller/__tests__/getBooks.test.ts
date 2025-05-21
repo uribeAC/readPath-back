@@ -22,7 +22,7 @@ describe("Given the getBooks method of BookController", () => {
 
   describe("When it receives a response", () => {
     const req: Pick<BookRequest, "query"> = {
-      query: { page: "" },
+      query: { page: "", state: "", genre: "" },
     };
 
     const pageNumber = 1;
@@ -144,7 +144,7 @@ describe("Given the getBooks method of BookController", () => {
     const maxBookPosition = minBookPosition + booksPerPageNumber;
 
     const req: Pick<BookRequest, "query"> = {
-      query: { page: pageNumber.toString() },
+      query: { page: pageNumber.toString(), state: "", genre: "" },
     };
 
     const bookModel: Pick<
