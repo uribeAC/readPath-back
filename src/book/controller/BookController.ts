@@ -75,7 +75,7 @@ class BookController implements BookControllerStructure {
     }
 
     if (genre) {
-      queryFilters.genre = genre;
+      queryFilters.genres = genre;
     }
 
     const booksPerPageNumber = 10;

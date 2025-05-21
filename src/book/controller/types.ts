@@ -48,7 +48,7 @@ export type BookQuery = {
   genre: string;
 };
 
-export type QueryFilters = { state?: string; genre?: string };
+export type QueryFilters = { state?: string; genres?: string };
 
 export type BookParams = {
   bookId: string;

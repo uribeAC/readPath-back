@@ -201,4 +201,6 @@ describe("Given the getBooks method of BookController", () => {
       );
     });
   });
+
+  describe("When it receives a request with state: read and genre: fantasy", () => {});
 });
