@@ -22,7 +22,7 @@ export const narutoVol1: BookStructure = {
   imageAlt: "Naruto Volume 1 Cover",
 };
 
-const onePieceVol1: BookStructure = {
+export const onePieceVol1: BookStructure = {
   _id: "2",
   title: "One Piece Vol. 1",
   author: "Eiichiro Oda",
@@ -110,7 +110,7 @@ const fullmetalAlchemistVol1: BookStructure = {
   imageAlt: "Fullmetal Alchemist Volume 1 Cover",
 };
 
-const bleachVol1: BookStructure = {
+export const bleachVol1: BookStructure = {
   _id: "6",
   title: "Bleach Vol. 1",
   author: "Tite Kubo",
