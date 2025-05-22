@@ -81,12 +81,12 @@ class BookController implements BookControllerStructure {
     const booksPerPageNumber = 10;
     const booksToSkipNumber = (Number(pageNumber) - 1) * booksPerPageNumber;
 
-    const booksTotal = await this.bookModel.countDocuments();
+    const booksTotal = await this.bookModel.countDocuments(queryFilters);
     const booksReadTotal = await this.bookModel
       .where({
         state: "read",
       })
-      .countDocuments();
+      .countDocuments(queryFilters);
 
     const booksToReadTotal = booksTotal - booksReadTotal;
 
