@@ -42,7 +42,7 @@ export const transformBookStatsMongoResponseToBookStats = (
       totals: {
         read: totals.booksTotal,
         pages: totals.pagesTotal,
-        authors: totals.authorsTotal,
+        authors: totals.totals,
       },
     };
 
