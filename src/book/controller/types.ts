@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { BookData, BookStructure } from "../types.js";
+import { BookData, BookStats, BookStructure } from "../types.js";
 
 export interface BookControllerStructure {
   getBooks: (req: BookRequest, res: BooksResponse) => Promise<void>;
@@ -33,6 +33,11 @@ export interface BookControllerStructure {
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
+  getBookStats: (
+    req: Request,
+    res: BookStatsResponse,
+    next: NextFunction,
+  ) => Promise<void>;
 }
 
 export type BookRequest = Request<
@@ -62,6 +67,8 @@ export type BooksResponse = Response<BooksBodyResponse>;
 
 export type BookResponse = Response<BookBodyResponse>;
 
+export type BookStatsResponse = Response<BookStats>;
+
 export type BooksBodyResponse = {
   books: BookStructure[];
   totals: {
@@ -74,3 +81,14 @@ export type BooksBodyResponse = {
 export type BookBodyResponse = {
   book: BookStructure;
 };
+
+export type BookStatsMongoResponse = {
+  pages: StatsTotals;
+  read: StatsTotals;
+  authors: StatsTotals;
+  genreStats: { _id: string; totals: number }[];
+  yearStats: { _id: number; booksTotal: number; pagesTotal: number }[];
+  yearAuthorStats: { _id: number; totals: number }[];
+}[];
+
+type StatsTotals = { total: number }[];

@@ -1,11 +1,13 @@
 import { Model } from "mongoose";
-import { NextFunction } from "express";
+import { NextFunction, Request } from "express";
 import { BookStructure } from "../types.js";
 import {
   BookControllerStructure,
   BookRequest,
   BookResponse,
   BooksResponse,
+  BookStatsMongoResponse,
+  BookStatsResponse,
   QueryFilters,
 } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
@@ -15,47 +17,10 @@ import {
   error409BookExists,
   error500NotUpdate,
 } from "../../server/ServerError/data.js";
+import { transformBookStatsMongoResponseToBookStats } from "../dto/transformers.js";
 
 class BookController implements BookControllerStructure {
   constructor(private readonly bookModel: Model<BookStructure>) {}
-
-  private readonly checkBookState = async (
-    next: NextFunction,
-    bookId: string,
-    actualState: "read" | "to read",
-  ): Promise<void> => {
-    const book = await this.bookModel.findById(bookId).exec();
-
-    if (!book) {
-      next(error404BookNotFound);
-
-      return;
-    }
-
-    if (book.state === actualState) {
-      const error = new ServerError(
-        statusCodes.CONFLICT,
-        `Book is already marked as ${actualState}`,
-      );
-
-      next(error);
-    }
-  };
-
-  private readonly updateBook = async (
-    bookId: string,
-    state: "read" | "to read",
-  ): Promise<BookStructure | null> => {
-    const updatedBook = await this.bookModel.findByIdAndUpdate(
-      bookId,
-      {
-        state,
-      },
-      { new: true },
-    );
-
-    return updatedBook;
-  };
 
   public getBooks = async (
     req: BookRequest,
@@ -123,6 +88,77 @@ class BookController implements BookControllerStructure {
     }
 
     res.status(statusCodes.OK).json({ book: book });
+  };
+
+  public getBookStats = async (
+    _req: Request,
+    res: BookStatsResponse,
+  ): Promise<void> => {
+    const bookStatsDto: BookStatsMongoResponse = await this.bookModel.aggregate(
+      [
+        {
+          $facet: {
+            pages: [
+              {
+                $group: {
+                  _id: "pages",
+                  total: { $sum: "$pages" },
+                },
+              },
+            ],
+            read: [
+              {
+                $match: { state: "read" },
+              },
+              { $count: "total" },
+            ],
+            authors: [
+              {
+                $group: {
+                  _id: "$author",
+                },
+              },
+              { $count: "total" },
+            ],
+            genreStats: [
+              { $unwind: "$genres" },
+              { $group: { _id: "$genres", totals: { $sum: 1 } } },
+              { $sort: { totals: -1 } },
+            ],
+            yearStats: [
+              { $unwind: "$readDates.readYear" },
+              {
+                $group: {
+                  _id: "$readDates.readYear",
+                  booksTotal: { $sum: 1 },
+                  pagesTotal: { $sum: "$pages" },
+                },
+              },
+              { $sort: { _id: -1 } },
+            ],
+            yearAuthorStats: [
+              { $unwind: "$readDates.readYear" },
+              {
+                $group: {
+                  _id: { year: "$readDates.readYear", author: "$author" },
+                },
+              },
+              {
+                $group: {
+                  _id: "$_id.year",
+                  totals: { $sum: 1 },
+                },
+              },
+              { $sort: { _id: -1 } },
+            ],
+          },
+        },
+      ],
+    );
+
+    const bookStats = transformBookStatsMongoResponseToBookStats(bookStatsDto);
+
+    res.status(200).json(bookStats);
   };
 
   public markAsRead = async (
@@ -239,6 +275,44 @@ class BookController implements BookControllerStructure {
     );
 
     res.status(statusCodes.OK).json({ book: modifiedBook! });
+  };
+
+  private readonly checkBookState = async (
+    next: NextFunction,
+    bookId: string,
+    actualState: "read" | "to read",
+  ): Promise<void> => {
+    const book = await this.bookModel.findById(bookId).exec();
+
+    if (!book) {
+      next(error404BookNotFound);
+
+      return;
+    }
+
+    if (book.state === actualState) {
+      const error = new ServerError(
+        statusCodes.CONFLICT,
+        `Book is already marked as ${actualState}`,
+      );
+
+      next(error);
+    }
+  };
+
+  private readonly updateBook = async (
+    bookId: string,
+    state: "read" | "to read",
+  ): Promise<BookStructure | null> => {
+    const updatedBook = await this.bookModel.findByIdAndUpdate(
+      bookId,
+      {
+        state,
+      },
+      { new: true },
+    );
+
+    return updatedBook;
   };
 }
 

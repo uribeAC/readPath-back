@@ -1,4 +1,4 @@
-import { BookData, BookStructure } from "../types.js";
+import { BookData, BookStats, BookStructure } from "../types.js";
 
 export const narutoVol1: BookStructure = {
   _id: "1",
@@ -445,4 +445,104 @@ export const akiraVol1: BookData = {
     "https://images-na.ssl-images-amazon.com/images/I/51v5ZpFyaFL._SX342_SY445_QL70_ML2_.jpg",
   coverImageUrlBig: "https://m.media-amazon.com/images/I/51v5ZpFyaFL.jpg",
   imageAlt: "Akira Volume 1 cover featuring Kaneda on his red motorcycle",
+};
+
+export const mangaStats: BookStats = {
+  totals: {
+    read: 10,
+    pages: 12265,
+    authors: 8,
+  },
+  genres: {
+    total: 13,
+    genres: [
+      {
+        genre: "Fiction",
+        booksTotal: 14,
+      },
+      {
+        genre: "Fantasy",
+        booksTotal: 13,
+      },
+      {
+        genre: "Science Fiction",
+        booksTotal: 11,
+      },
+      {
+        genre: "Dystopia",
+        booksTotal: 6,
+      },
+      {
+        genre: "Adventure",
+        booksTotal: 6,
+      },
+      {
+        genre: "Epic Fantasy",
+        booksTotal: 5,
+      },
+      {
+        genre: "High Fantasy",
+        booksTotal: 5,
+      },
+      {
+        genre: "LitRPG",
+        booksTotal: 2,
+      },
+      {
+        genre: "Young Adult",
+        booksTotal: 2,
+      },
+      {
+        genre: "Mystery",
+        booksTotal: 2,
+      },
+
+      {
+        genre: "Thriller",
+        booksTotal: 1,
+      },
+      {
+        genre: "Anthropomorphic",
+        booksTotal: 1,
+      },
+      {
+        genre: "Humor",
+        booksTotal: 1,
+      },
+    ],
+  },
+  booksYear: [
+    {
+      year: 2022,
+      totals: {
+        read: 4,
+        pages: 2364,
+        authors: 1,
+      },
+    },
+    {
+      year: 2023,
+      totals: {
+        read: 6,
+        pages: 5686,
+        authors: 2,
+      },
+    },
+    {
+      year: 2024,
+      totals: {
+        read: 2,
+        pages: 1068,
+        authors: 2,
+      },
+    },
+    {
+      year: 2025,
+      totals: {
+        read: 2,
+        pages: 1949,
+        authors: 2,
+      },
+    },
+  ],
 };
