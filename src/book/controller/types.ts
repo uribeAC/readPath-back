@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { BookData, BookStatsTotals, BookStructure } from "../types.js";
+import { BookData, BookStats, BookStructure } from "../types.js";
 
 export interface BookControllerStructure {
   getBooks: (req: BookRequest, res: BooksResponse) => Promise<void>;
@@ -35,7 +35,7 @@ export interface BookControllerStructure {
   ) => Promise<void>;
   getBookStats: (
     req: Request,
-    res: BookResponse,
+    res: BookStatsResponse,
     next: NextFunction,
   ) => Promise<void>;
 }
@@ -67,7 +67,7 @@ export type BooksResponse = Response<BooksBodyResponse>;
 
 export type BookResponse = Response<BookBodyResponse>;
 
-export type BookStatsResponse = Response<BookStatsTotals>;
+export type BookStatsResponse = Response<BookStats>;
 
 export type BooksBodyResponse = {
   books: BookStructure[];

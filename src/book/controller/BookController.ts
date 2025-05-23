@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request } from "express";
 import { BookStructure } from "../types.js";
 import {
   BookControllerStructure,
@@ -7,6 +7,7 @@ import {
   BookResponse,
   BooksResponse,
   BookStatsMongoResponse,
+  BookStatsResponse,
   QueryFilters,
 } from "./types.js";
 import statusCodes from "../../globals/statusCodes.js";
@@ -89,7 +90,10 @@ class BookController implements BookControllerStructure {
     res.status(statusCodes.OK).json({ book: book });
   };
 
-  public getBookStats = async (_req: Request, res: Response): Promise<void> => {
+  public getBookStats = async (
+    _req: Request,
+    res: BookStatsResponse,
+  ): Promise<void> => {
     const bookStatsDto: BookStatsMongoResponse = await this.bookModel.aggregate(
       [
         {
@@ -154,9 +158,7 @@ class BookController implements BookControllerStructure {
 
     const bookStats = transformBookStatsMongoResponseToBookStats(bookStatsDto);
 
-    res.status(200).json({
-      bookStats,
-    });
+    res.status(200).json(bookStats);
   };
 
   public markAsRead = async (
