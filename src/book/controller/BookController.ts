@@ -14,6 +14,7 @@ import statusCodes from "../../globals/statusCodes.js";
 import ServerError from "../../server/ServerError/ServerError.js";
 import {
   error404BookNotFound,
+  error404ReadBooksNotFound,
   error409BookExists,
   error500NotUpdate,
 } from "../../server/ServerError/data.js";
@@ -93,7 +94,20 @@ class BookController implements BookControllerStructure {
   public getBookStats = async (
     _req: Request,
     res: BookStatsResponse,
+    next: NextFunction,
   ): Promise<void> => {
+    const readBooksTotal = await this.bookModel
+      .where({
+        state: "read",
+      })
+      .countDocuments();
+
+    if (readBooksTotal === 0) {
+      next(error404ReadBooksNotFound);
+
+      return;
+    }
+
     const bookStatsDto: BookStatsMongoResponse = await this.bookModel.aggregate(
       [
         {
