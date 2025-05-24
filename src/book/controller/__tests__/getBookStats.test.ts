@@ -7,7 +7,7 @@ import statusCodes from "../../../globals/statusCodes.js";
 import { mangaStatsDto } from "../../fixtures/fixturesDto.js";
 import { mangaStats } from "../../fixtures/fixtures.js";
 
-describe("Given the getBooKStats method of BookController", () => {
+describe("Given the getBookStats method of BookController", () => {
   const res: Pick<BookStatsResponse, "status" | "json"> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
