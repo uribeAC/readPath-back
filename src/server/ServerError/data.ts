@@ -21,6 +21,11 @@ export const error404BookNotFound = new ServerError(
   "Book not found",
 );
 
+export const error404ReadBooksNotFound = new ServerError(
+  statusCodes.NOT_FOUND,
+  "Read books not found",
+);
+
 export const error500NotUpdate = new ServerError(
   statusCodes.INTERNAL_SERVER_ERROR,
   "Couldn't update book",

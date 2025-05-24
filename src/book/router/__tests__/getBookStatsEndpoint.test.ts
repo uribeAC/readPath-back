@@ -8,7 +8,8 @@ import {
   attackOnTitanFinalVolume,
   narutoFinalVolume,
 } from "../../fixtures/fixtures.js";
-import { BookStats } from "../../types.js";
+import { BookStats, ResponseBodyError } from "../../types.js";
+import statusCodes from "../../../globals/statusCodes.js";
 
 let server: MongoMemoryServer;
 
@@ -47,12 +48,21 @@ describe("Given the GET /books/stats endpoint", () => {
       const body = response.body as BookStats;
 
       expect(body.totals).toMatchObject({
-        totals: {
-          read: 2,
-          pages: 464,
-          authors: 2,
-        },
+        read: 2,
+        pages: 464,
+        authors: 2,
       });
+    });
+  });
+
+  describe("When it receives a request but there is 0 books read", () => {
+    test("Then it should return a 404 'Read books not found' error", async () => {
+      const response = await request(app).get("/books/stats");
+
+      const body = response.body as ResponseBodyError;
+
+      expect(response.status).toBe(statusCodes.NOT_FOUND);
+      expect(body.error).toBe("Read books not found");
     });
   });
 });
