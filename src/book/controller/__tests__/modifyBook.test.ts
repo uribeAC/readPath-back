@@ -2,8 +2,8 @@ import { Model } from "mongoose";
 import { NextFunction } from "express";
 import {
   akiraVol1,
+  dragonBall,
   dragonBallDataModified,
-  dragonBallDataToRead,
   dragonBallVol1ToRead,
 } from "../../fixtures/fixtures.js";
 import { BookRequest, BookResponse } from "../types.js";
@@ -27,7 +27,7 @@ describe("Given the modifyBook method of BookController", () => {
   describe("When it receives a request with Dragon Ball Vol. 1 book id and the modified book", () => {
     const req: Pick<BookRequest, "params" | "body"> = {
       params: { bookId: dragonBallVol1ToRead._id },
-      body: { book: dragonBallDataToRead },
+      body: { book: dragonBall },
     };
 
     const bookModel: Pick<

@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 import { BookStructure } from "../../types.js";
-import { BookRequest, BooksResponse } from "../types.js";
+import { BookDataRequest, BooksResponse } from "../types.js";
 import {
   bleachVol1,
   mangaFixtures as mangaFixturesOriginal,
@@ -26,7 +26,7 @@ describe("Given the getBooks method of BookController", () => {
   };
 
   describe("When it receives a response", () => {
-    const req: Pick<BookRequest, "query"> = {
+    const req: Pick<BookDataRequest, "query"> = {
       query: { page: "", state: "", genre: "" },
     };
 
@@ -66,7 +66,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.status).toHaveBeenCalledWith(statusCodes.OK);
     });
@@ -81,7 +84,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -97,7 +103,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -113,7 +122,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -131,7 +143,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -148,7 +163,7 @@ describe("Given the getBooks method of BookController", () => {
     const minBookPosition = (pageNumber - 1) * booksPerPageNumber;
     const maxBookPosition = minBookPosition + booksPerPageNumber;
 
-    const req: Pick<BookRequest, "query"> = {
+    const req: Pick<BookDataRequest, "query"> = {
       query: { page: pageNumber.toString(), state: "", genre: "" },
     };
 
@@ -197,7 +212,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -212,7 +230,7 @@ describe("Given the getBooks method of BookController", () => {
     const minBookPosition = (pageNumber - 1) * booksPerPageNumber;
     const maxBookPosition = minBookPosition + booksPerPageNumber;
 
-    const req: Pick<BookRequest, "query"> = {
+    const req: Pick<BookDataRequest, "query"> = {
       query: { page: pageNumber.toString(), state: "", genre: "" },
     };
 
@@ -259,7 +277,10 @@ describe("Given the getBooks method of BookController", () => {
         bookModel as Model<BookStructure>,
       );
 
-      await bookController.getBooks(req as BookRequest, res as BooksResponse);
+      await bookController.getBooks(
+        req as BookDataRequest,
+        res as BooksResponse,
+      );
 
       expect(res.json).toHaveBeenCalledWith(
         expect.objectContaining({

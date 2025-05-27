@@ -1,4 +1,9 @@
-import { BookData, BookStats, BookStructure } from "../types.js";
+import {
+  BookData,
+  BookDataWithId,
+  BookStats,
+  BookStructure,
+} from "../types.js";
 
 export const narutoVol1: BookStructure = {
   _id: "1",
@@ -422,7 +427,7 @@ export const dragonBallDataModified: BookData = {
   imageAlt: "Dragon Ball Volume 1 cover featuring young Goku riding a cloud",
 };
 
-export const akiraVol1: BookData = {
+export const akiraVol1Data: BookData = {
   title: "Akira, Vol. 1",
   author: "Akira Toriyama",
   saga: {
@@ -441,6 +446,54 @@ export const akiraVol1: BookData = {
     dateFinished: "",
     readYear: 0,
   },
+  coverImageUrlSmall:
+    "https://images-na.ssl-images-amazon.com/images/I/51v5ZpFyaFL._SX342_SY445_QL70_ML2_.jpg",
+  coverImageUrlBig: "https://m.media-amazon.com/images/I/51v5ZpFyaFL.jpg",
+  imageAlt: "Akira Volume 1 cover featuring Kaneda on his red motorcycle",
+};
+
+export const dragonBall: BookDataWithId = {
+  _id: "dragonballdragonball1234",
+  title: "Dragon Ball, Vol. 1",
+  author: "Akira Toriyama",
+  saga: {
+    name: "Dragon Ball",
+    bookNumber: 1,
+  },
+  description:
+    "Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.",
+  genres: ["Manga", "Action", "Adventure", "Comedy"],
+  pages: 192,
+  firstPublished: "2003-05-06",
+  state: "read",
+  userRating: 5,
+  readDates: {
+    dateStarted: "2021-03-15",
+    dateFinished: "2021-03-17",
+    readYear: 2021,
+  },
+  coverImageUrlSmall:
+    "https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg",
+  coverImageUrlBig:
+    "https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg",
+  imageAlt: "Dragon Ball Volume 1 cover featuring young Goku riding a cloud",
+};
+
+export const akiraVol1: BookDataWithId = {
+  _id: "akiraakiraakiraakira1234",
+  title: "Akira, Vol. 1",
+  author: "Akira Toriyama",
+  saga: {
+    name: "Akira",
+    bookNumber: 1,
+  },
+  description:
+    "In a dystopian Neo-Tokyo, a government experiment gone wrong unleashes chaos when a young man named Tetsuo develops uncontrollable psychic powers. As his friend Kaneda tries to save him, the city descends into violence, rebellion, and transformation.\n\nAkira, Vol. 1 introduces a world of political unrest, psychic warfare, and philosophical tension in one of the most influential cyberpunk manga series of all time.",
+  genres: ["Manga", "Science Fiction", "Cyberpunk", "Dystopia"],
+  pages: 364,
+  firstPublished: "1982-12-20",
+  state: "to read",
+  userRating: undefined,
   coverImageUrlSmall:
     "https://images-na.ssl-images-amazon.com/images/I/51v5ZpFyaFL._SX342_SY445_QL70_ML2_.jpg",
   coverImageUrlBig: "https://m.media-amazon.com/images/I/51v5ZpFyaFL.jpg",

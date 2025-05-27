@@ -5,7 +5,7 @@ import {
   dragonBallVol1ToRead,
 } from "../../fixtures/fixtures.js";
 import { BookStructure } from "../../types.js";
-import { BookRequest, BookResponse } from "../types.js";
+import { BookDataRequest, BookResponse } from "../types.js";
 import BookController from "../BookController.js";
 import statusCodes from "../../../globals/statusCodes.js";
 import {
@@ -26,7 +26,7 @@ describe("Given the markAsRead method of BookController", () => {
   const next = jest.fn();
 
   describe("When it receives a request with Dragon Ball, Vol. 1 book id and it's marked as 'To read'", () => {
-    const req: Pick<BookRequest, "params"> = {
+    const req: Pick<BookDataRequest, "params"> = {
       params: { bookId: dragonBallVol1ToRead._id },
     };
 
@@ -46,7 +46,7 @@ describe("Given the markAsRead method of BookController", () => {
       );
 
       await bookController.markAsRead(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );
@@ -60,7 +60,7 @@ describe("Given the markAsRead method of BookController", () => {
       );
 
       await bookController.markAsRead(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );
@@ -71,7 +71,7 @@ describe("Given the markAsRead method of BookController", () => {
 
   describe("When it receives a request with Dragon Ball Vol.1 book id and it's marked as 'Read'", () => {
     test("Then it should call the received next method with 409 'Book is already marked as Read' error", async () => {
-      const req: Pick<BookRequest, "params"> = {
+      const req: Pick<BookDataRequest, "params"> = {
         params: { bookId: dragonBallVol1Read._id },
       };
 
@@ -90,7 +90,7 @@ describe("Given the markAsRead method of BookController", () => {
       );
 
       await bookController.markAsRead(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );
@@ -101,7 +101,7 @@ describe("Given the markAsRead method of BookController", () => {
 
   describe("When it receives a request with Akira Vol.1 book id that is not in the database", () => {
     test("Then it should call the received next method with 404 'Book not found' error", async () => {
-      const req: Pick<BookRequest, "params"> = {
+      const req: Pick<BookDataRequest, "params"> = {
         params: { bookId: "Akira-vol.1" },
       };
 
@@ -120,7 +120,7 @@ describe("Given the markAsRead method of BookController", () => {
       );
 
       await bookController.markAsRead(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );

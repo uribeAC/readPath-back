@@ -4,7 +4,7 @@ import {
   dragonBallVol1Read,
 } from "../../fixtures/fixtures.js";
 import { BookStructure } from "../../types.js";
-import { BookRequest, BookResponse } from "../types.js";
+import { BookDataRequest, BookResponse } from "../types.js";
 import BookController from "../BookController.js";
 import { NextFunction } from "express";
 import statusCodes from "../../../globals/statusCodes.js";
@@ -22,7 +22,7 @@ describe("Given the addBook method of BookController", () => {
 
   const next = jest.fn();
 
-  const req: Pick<BookRequest, "body"> = {
+  const req: Pick<BookDataRequest, "body"> = {
     body: { book: dragonBallDataRead },
   };
   describe("When it receives Dragon Ball book data", () => {
@@ -39,7 +39,7 @@ describe("Given the addBook method of BookController", () => {
 
     test("Then it should call the response's method status with 201", async () => {
       await bookController.addBook(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );
@@ -49,7 +49,7 @@ describe("Given the addBook method of BookController", () => {
 
     test("Then it should call the response's method json with Dragon Ball book", async () => {
       await bookController.addBook(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );
@@ -71,7 +71,7 @@ describe("Given the addBook method of BookController", () => {
       );
 
       await bookController.addBook(
-        req as BookRequest,
+        req as BookDataRequest,
         res as BookResponse,
         next as NextFunction,
       );
