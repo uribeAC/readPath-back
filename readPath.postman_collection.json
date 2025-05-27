@@ -14,7 +14,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"userRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
+          "raw": "{\"book\": {\"title\": \"Dragon Ball, Vol. 1\",\r\n  \"author\": \"Akira Toriyama\",\r\n  \"saga\": {\r\n    \"name\": \"Dragon Ball\",\r\n    \"bookNumber\": 1\r\n  },\r\n  \"description\":\r\n    \"Follow the adventures of a young monkey-tailed boy named Goku as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, he meets Bulma, Master Roshi, and other unforgettable characters in the beginning of this legendary manga series.\",\r\n  \"genres\": [\"Manga\", \"Action\", \"Adventure\", \"Comedy\"],\r\n  \"pages\": 192,\r\n  \"firstPublished\": \"2003-05-06\",\r\n  \"state\": \"read\",\r\n  \"yourRating\": 5,\r\n  \"readDates\": {\r\n    \"dateStarted\": \"2021-03-15\",\r\n    \"dateFinished\": \"2021-03-17\",\r\n    \"readYear\": 2021\r\n  },\r\n  \"coverImageUrlSmall\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL._SX331_BO1,204,203,200_.jpg\",\r\n  \"coverImageUrlBig\":\r\n    \"https://images-na.ssl-images-amazon.com/images/I/51Ypye1bxBL.jpg\",\r\n  \"imageAlt\": \"Dragon Ball Volume 1 cover featuring young Goku riding a cloud\"}}",
           "options": {
             "raw": {
               "language": "json"
@@ -60,6 +60,20 @@
           "protocol": "https",
           "host": ["alex-uribe-202502-back", "onrender", "com"],
           "path": ["books", "681b126152db6fc282a4b7f0"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/books/stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://alex-uribe-202502-back.onrender.com/books/stats",
+          "protocol": "https",
+          "host": ["alex-uribe-202502-back", "onrender", "com"],
+          "path": ["books", "stats"]
         }
       },
       "response": []
@@ -125,7 +139,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"book\": {\r\n        \"readDates\": {\r\n            \"dateStarted\": \"2025-05-15T00:00:00.000Z\",\r\n            \"dateFinished\": \"2025-05-21T00:00:00.000Z\",\r\n            \"readYear\": 2025\r\n        },\r\n        \"_id\": \"681b126152db6fc282a4b7f0\",\r\n        \"title\": \"1% Lifesteal: A LitRPG\",\r\n        \"author\": \"Robert Blaise\",\r\n        \"description\": \"In a world of countless enemies, Freddy's unique power will help him thrive.\\n\\nFreddy Stern, a twenty-one-year-old cashier, has lived a plain, albeit harsh life. But when he awakens in a new world, one governed by game-like mechanics, he discovers a unique ability: 1% lifesteal. As he navigates this perilous realm, Freddy must learn to harness his power, face formidable foes, and uncover the secrets of his new reality.\",\r\n        \"genres\": [\r\n            \"LitRPG\",\r\n            \"Fantasy\",\r\n            \"Adventure\",\r\n            \"Science Fiction\"\r\n        ],\r\n        \"pages\": 605,\r\n        \"firstPublished\": \"2025-03-12T00:00:00.000Z\",\r\n        \"state\": \"read\",\r\n        \"userRating\": 5,\r\n        \"coverImageUrlSmall\": \"https://m.media-amazon.com/images/I/81fxedWiO8L._UF1000,1000_QL80_.jpg\",\r\n        \"coverImageUrlBig\": \"https://m.media-amazon.com/images/I/81fxedWiO8L._UF1000,1000_QL80_.jpg\",\r\n        \"imageAlt\": \"1% Lifesteal: A LitRPG Adventure book cover\",\r\n        \"createdAt\": \"2025-05-21T09:52:19.667Z\",\r\n        \"updatedAt\": \"2025-05-21T09:52:19.667Z\"\r\n    }\r\n}",
+          "raw": "{\r\n    \"book\": {\r\n        \"readDates\": {\r\n            \"dateStarted\": \"2025-05-15T00:00:00.000Z\",\r\n            \"dateFinished\": \"2025-05-21T00:00:00.000Z\",\r\n            \"readYear\": 2025\r\n        },\r\n        \"_id\": \"681b126152db6fc282a4b7f0\",\r\n        \"title\": \"1% Lifesteal: A LitRPG\",\r\n        \"author\": \"Robert Blaise\",\r\n        \"description\": \"In a world of countless enemies, Freddy's unique power will help him thrive.\\n\\nFreddy Stern, a twenty-one-year-old cashier, has lived a plain, albeit harsh life. But when he awakens in a new world, one governed by game-like mechanics, he discovers a unique ability: 1% lifesteal. As he navigates this perilous realm, Freddy must learn to harness his power, face formidable foes, and uncover the secrets of his new reality.\",\r\n        \"genres\": [\r\n            \"LitRPG\",\r\n            \"Fantasy\",\r\n            \"Adventure\",\r\n            \"Science Fiction\"\r\n        ],\r\n        \"pages\": 605,\r\n        \"firstPublished\": \"2025-03-12T00:00:00.000Z\",\r\n        \"state\": \"read\",\r\n        \"yourRating\": 5,\r\n        \"coverImageUrlSmall\": \"https://m.media-amazon.com/images/I/81fxedWiO8L._UF1000,1000_QL80_.jpg\",\r\n        \"coverImageUrlBig\": \"https://m.media-amazon.com/images/I/81fxedWiO8L._UF1000,1000_QL80_.jpg\",\r\n        \"imageAlt\": \"1% Lifesteal: A LitRPG Adventure book cover\",\r\n        \"createdAt\": \"2025-05-21T09:52:19.667Z\",\r\n        \"updatedAt\": \"2025-05-21T09:52:19.667Z\"\r\n    }\r\n}",
           "options": {
             "raw": {
               "language": "json"

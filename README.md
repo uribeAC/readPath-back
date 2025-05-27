@@ -1,8 +1,12 @@
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 ![Tech Stack](https://img.shields.io/badge/stack-MERN-blue)
-![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-100%25-success)
+![TypeScript](https://img.shields.io/badge/code-typescript-blue.svg)
 ![MongoDB](https://img.shields.io/badge/database-MongoDB-brightgreen)
+![Tests](https://github.com/uribeAC/readPath-back/actions/workflows/testing.yml/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7f5238db-9fe8-4fb0-8860-d582c9853b34/deploy-status)](https://app.netlify.com/projects/alex-uribe-202502-front/deploys)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=uribeAC_readPath-back&metric=coverage)](https://sonarcloud.io/summary/new_code?id=uribeAC_readPath-back)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=uribeAC_readPath-back&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=uribeAC_readPath-back)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=uribeAC_readPath-back&metric=bugs)](https://sonarcloud.io/project/issues?id=uribeAC_readPath-back&resolved=false&types=BUG)
 
 # 📚 readPath - Backend
 
@@ -176,6 +180,46 @@ Sets the state of the book to `"to read"`.
 
 - Example:  
   `PATCH /books/mark-as-toread/681b126152db6fc282a4b7f0`
+
+---
+
+### 📊 Book Statistics
+
+#### 📈 Get bookshelf statistics
+
+`GET /books/stats`  
+Returns summary statistics about the collection, including totals, genres, and books read per year.
+
+- **Example response:**
+
+```json
+{
+  "stats": {
+    "totals": {
+      "read": 20,
+      "pages": 5231,
+      "authors": 15
+    },
+    "genres": {
+      "total": 12,
+      "genres": [
+        { "genre": "Fantasy", "booksTotal": 5 },
+        { "genre": "Science Fiction", "booksTotal": 3 }
+      ]
+    },
+    "booksYear": [
+      {
+        "year": 2024,
+        "totals": {
+          "read": 5,
+          "pages": 1620,
+          "authors": 4
+        }
+      }
+    ]
+  }
+}
+```
 
 ---
 
