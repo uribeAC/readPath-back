@@ -43,7 +43,7 @@ const bookSchema = new Schema<BookStructure>(
       default: "to read",
       required: true,
     },
-    yourRating: {
+    userRating: {
       type: Number,
       enum: RatingValues,
     },

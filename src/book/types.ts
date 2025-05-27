@@ -11,7 +11,7 @@ export interface BookStructure {
   pages: number;
   firstPublished: Date;
   state: "read" | "to read";
-  yourRating?: Rating;
+  userRating?: Rating;
   readDates?: {
     dateStarted?: Date;
     dateFinished?: Date;
