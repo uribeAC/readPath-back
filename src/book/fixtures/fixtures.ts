@@ -11,7 +11,7 @@ export const narutoVol1: BookStructure = {
   pages: 187,
   firstPublished: new Date("1999-03-01"),
   state: "read",
-  yourRating: 4,
+  userRating: 4,
   readDates: {
     dateStarted: new Date("2021-05-10"),
     dateFinished: new Date("2021-05-15"),
@@ -33,7 +33,7 @@ export const onePieceVol1: BookStructure = {
   pages: 208,
   firstPublished: new Date("1997-07-22"),
   state: "read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: new Date("2020-08-01"),
     dateFinished: new Date("2020-08-05"),
@@ -55,7 +55,7 @@ const attackOnTitanVol1: BookStructure = {
   pages: 193,
   firstPublished: new Date("2009-10-07"),
   state: "read",
-  yourRating: 4,
+  userRating: 4,
   readDates: {
     dateStarted: new Date("2019-11-12"),
     dateFinished: new Date("2019-11-13"),
@@ -77,7 +77,7 @@ const deathNoteVol1: BookStructure = {
   pages: 195,
   firstPublished: new Date("2003-12-01"),
   state: "read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: new Date("2022-01-03"),
     dateFinished: new Date("2022-01-05"),
@@ -99,7 +99,7 @@ const fullmetalAlchemistVol1: BookStructure = {
   pages: 192,
   firstPublished: new Date("2001-07-12"),
   state: "read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: new Date("2021-03-15"),
     dateFinished: new Date("2021-03-17"),
@@ -121,7 +121,7 @@ export const bleachVol1: BookStructure = {
   pages: 192,
   firstPublished: new Date("2001-08-07"),
   state: "read",
-  yourRating: 4,
+  userRating: 4,
   readDates: {
     dateStarted: new Date("2020-10-10"),
     dateFinished: new Date("2020-10-12"),
@@ -143,7 +143,7 @@ const chainsawManVol1: BookStructure = {
   pages: 192,
   firstPublished: new Date("2019-03-03"),
   state: "read",
-  yourRating: 4,
+  userRating: 4,
   readDates: {
     dateStarted: new Date("2023-02-01"),
     dateFinished: new Date("2023-02-02"),
@@ -262,7 +262,7 @@ export const narutoFinalVolume: BookData = {
   pages: 208,
   firstPublished: "2015-10-06",
   state: "read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: "2015-10-10",
     dateFinished: "2015-10-12",
@@ -288,7 +288,7 @@ export const attackOnTitanFinalVolume: BookData = {
   pages: 256,
   firstPublished: "2021-10-19",
   state: "read",
-  yourRating: 4,
+  userRating: 4,
   readDates: {
     dateStarted: "2021-10-20",
     dateFinished: "2021-10-21",
@@ -337,7 +337,7 @@ export const dragonBallVol1Read: BookStructure = {
   pages: 192,
   firstPublished: new Date("2003-05-06"),
   state: "read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: new Date("2021-03-15"),
     dateFinished: new Date("2021-03-17"),
@@ -363,7 +363,7 @@ export const dragonBallDataRead: BookData = {
   pages: 192,
   firstPublished: "2003-05-06",
   state: "read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: "2021-03-15",
     dateFinished: "2021-03-17",
@@ -409,7 +409,7 @@ export const dragonBallDataModified: BookData = {
   pages: 192,
   firstPublished: "2003-05-06",
   state: "to read",
-  yourRating: 5,
+  userRating: 5,
   readDates: {
     dateStarted: "2021-03-15",
     dateFinished: "2021-03-17",
@@ -435,7 +435,7 @@ export const akiraVol1: BookData = {
   pages: 364,
   firstPublished: "1982-12-20",
   state: "to read",
-  yourRating: undefined,
+  userRating: undefined,
   readDates: {
     dateStarted: "",
     dateFinished: "",

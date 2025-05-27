@@ -232,7 +232,7 @@ class BookController implements BookControllerStructure {
     }
 
     if (book.state === "to read") {
-      delete book.yourRating;
+      delete book.userRating;
       delete book.readDates;
     }
 
@@ -278,7 +278,7 @@ class BookController implements BookControllerStructure {
     }
 
     if (book.state === "to read") {
-      delete book.yourRating;
+      delete book.userRating;
       delete book.readDates;
     }
 
