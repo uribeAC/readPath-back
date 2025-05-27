@@ -36,6 +36,8 @@ export type BookData = Omit<
   };
 };
 
+export type BookDataWithId = BookData & { _id: string };
+
 export interface ResponseBodyError {
   error: string;
 }

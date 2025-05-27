@@ -1,5 +1,8 @@
 import { NextFunction } from "express";
-import { BookRequest, BookResponse } from "../../../book/controller/types.js";
+import {
+  BookDataRequest,
+  BookResponse,
+} from "../../../book/controller/types.js";
 import isValidId from "./isValidId.js";
 import { error400NotValidId } from "../../ServerError/data.js";
 
@@ -8,11 +11,11 @@ describe("Given the isValidId middleware", () => {
     test("Then it should call the next function with with 400, 'Id not valid' error", async () => {
       const req = {
         params: { bookId: "12345" },
-      } as Pick<BookRequest, "params">;
+      } as Pick<BookDataRequest, "params">;
       const next = jest.fn();
 
       await isValidId(
-        req as BookRequest,
+        req as BookDataRequest,
         {} as BookResponse,
         next as NextFunction,
       );
@@ -25,11 +28,11 @@ describe("Given the isValidId middleware", () => {
     test("Then it should call the next function", async () => {
       const req = {
         params: { bookId: "123451234512345123451234" },
-      } as Pick<BookRequest, "params">;
+      } as Pick<BookDataRequest, "params">;
       const next = jest.fn();
 
       await isValidId(
-        req as BookRequest,
+        req as BookDataRequest,
         {} as BookResponse,
         next as NextFunction,
       );

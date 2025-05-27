@@ -3,6 +3,7 @@ import { NextFunction, Request } from "express";
 import { BookStructure } from "../types.js";
 import {
   BookControllerStructure,
+  BookDataRequest,
   BookRequest,
   BookResponse,
   BooksResponse,
@@ -24,7 +25,7 @@ class BookController implements BookControllerStructure {
   constructor(private readonly bookModel: Model<BookStructure>) {}
 
   public getBooks = async (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BooksResponse,
   ): Promise<void> => {
     let pageNumber = req.query.page;
@@ -74,7 +75,7 @@ class BookController implements BookControllerStructure {
   };
 
   public getBookById = async (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
@@ -176,7 +177,7 @@ class BookController implements BookControllerStructure {
   };
 
   public markAsRead = async (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
@@ -195,7 +196,7 @@ class BookController implements BookControllerStructure {
   };
 
   public markAsToRead = async (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
@@ -215,7 +216,7 @@ class BookController implements BookControllerStructure {
   };
 
   public addBook = async (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {
@@ -242,7 +243,7 @@ class BookController implements BookControllerStructure {
   };
 
   public deleteBook = async (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ): Promise<void> => {

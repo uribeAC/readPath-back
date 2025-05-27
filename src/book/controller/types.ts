@@ -1,30 +1,35 @@
 import { NextFunction, Request, Response } from "express";
-import { BookData, BookStats, BookStructure } from "../types.js";
+import {
+  BookData,
+  BookDataWithId,
+  BookStats,
+  BookStructure,
+} from "../types.js";
 
 export interface BookControllerStructure {
-  getBooks: (req: BookRequest, res: BooksResponse) => Promise<void>;
+  getBooks: (req: BookDataRequest, res: BooksResponse) => Promise<void>;
   getBookById: (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
   markAsRead: (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
   markAsToRead: (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
   addBook: (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
   deleteBook: (
-    req: BookRequest,
+    req: BookDataRequest,
     res: BookResponse,
     next: NextFunction,
   ) => Promise<void>;
@@ -39,6 +44,13 @@ export interface BookControllerStructure {
     next: NextFunction,
   ) => Promise<void>;
 }
+
+export type BookDataRequest = Request<
+  BookParams,
+  Record<string, unknown>,
+  BookDataBody,
+  BookQuery
+>;
 
 export type BookRequest = Request<
   BookParams,
@@ -59,8 +71,12 @@ export type BookParams = {
   bookId: string;
 };
 
-export type BookBody = {
+export type BookDataBody = {
   book: BookData;
+};
+
+export type BookBody = {
+  book: BookDataWithId;
 };
 
 export type BooksResponse = Response<BooksBodyResponse>;

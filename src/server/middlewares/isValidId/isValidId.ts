@@ -1,10 +1,10 @@
 import { NextFunction, Response } from "express";
 import mongoose from "mongoose";
-import { BookRequest } from "../../../book/controller/types.js";
+import { BookDataRequest } from "../../../book/controller/types.js";
 import { error400NotValidId } from "../../ServerError/data.js";
 
 const isValidId = async (
-  req: BookRequest,
+  req: BookDataRequest,
   _res: Response,
   next: NextFunction,
 ): Promise<void> => {
