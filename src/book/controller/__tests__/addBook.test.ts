@@ -1,7 +1,8 @@
 import { Model } from "mongoose";
 import {
-  dragonBallDataRead,
+  dragonBallDataToRead,
   dragonBallVol1Read,
+  dragonBallVol1ToRead,
 } from "../../fixtures/fixtures.js";
 import { BookStructure } from "../../types.js";
 import { BookDataRequest, BookResponse } from "../types.js";
@@ -23,14 +24,14 @@ describe("Given the addBook method of BookController", () => {
   const next = jest.fn();
 
   const req: Pick<BookDataRequest, "body"> = {
-    body: { book: dragonBallDataRead },
+    body: { book: dragonBallDataToRead },
   };
   describe("When it receives Dragon Ball book data", () => {
     const bookModel: Pick<Model<BookStructure>, "findOne" | "insertOne"> = {
       findOne: jest.fn().mockReturnValue({
         exec: jest.fn().mockResolvedValue(null),
       }),
-      insertOne: jest.fn().mockResolvedValue(dragonBallVol1Read),
+      insertOne: jest.fn().mockResolvedValue(dragonBallVol1ToRead),
     };
 
     const bookController = new BookController(
@@ -54,7 +55,7 @@ describe("Given the addBook method of BookController", () => {
         next as NextFunction,
       );
 
-      expect(res.json).toHaveBeenCalledWith({ book: dragonBallVol1Read });
+      expect(res.json).toHaveBeenCalledWith({ book: dragonBallVol1ToRead });
     });
   });
 
